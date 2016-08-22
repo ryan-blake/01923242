@@ -1,0 +1,27 @@
+<% unless user_signed_in? %>
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+ <% end %>
+<% end %>
+
+<h1> Welcome!</h1>
+<%  @spots.each do |i| %>
+<table>
+  <tr>
+    <td><%=link_to i.title, i %>:  :   </td>
+  <td><%=i.description.concat(10)%></td>
+  <td><strong>Length:  </strong>:<%= i.length%></td>
+  <td><strong>width:  </strong>:<%= i.width%></td>
+  <td><strong>depth:  </strong>:<%= i.depth%></td>
+
+ <tr>
+</table>
+<% end %>

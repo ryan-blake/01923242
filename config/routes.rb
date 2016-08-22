@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  root to: 'spots#index'
 
   devise_for :users
-  root to: 'spots#index'
+
     resources :spots
 
+# pages
     get '/secret', to: 'spots#secret', as: :secret
 
 end
