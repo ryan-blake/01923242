@@ -10,18 +10,21 @@
     </div>
   </div>
  <% end %>
-<% end %>
-
+<% else %>
 <h1> Welcome!</h1>
 <%  @spots.each do |i| %>
+<div class="well well-lg">
+
 <table>
   <tr>
-    <td><%=link_to i.title, i %>:  :   </td>
-  <td><%=i.description.concat(10)%></td>
-  <td><strong>Length:  </strong>:<%= i.length%></td>
-  <td><strong>width:  </strong>:<%= i.width%></td>
-  <td><strong>depth:  </strong>:<%= i.depth%></td>
-
- <tr>
+    <h3><td><%=link_to i.title, i %>:    </td></h3>
+    <td><%=i.description.truncate(69)%></td>
+    <td style="padding-left: 15px;"><strong>Length:  </strong>:<%= i.length%></td>
+    <td style="padding-left: 15px;"><strong>width:  </strong>:<%= i.width%></td>
+    <td style="padding-left: 15px;"><strong>depth:  </strong>:<%= i.depth%></td>
+  <tr>
 </table>
+</div>
+
+<% end %>
 <% end %>

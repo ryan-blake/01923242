@@ -6,20 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.create!(
-  :email => "ryan_blake@icloud.com",
-  :name => "ryan",
-  :password => "testtest",
-  :role => "member"
-);
-user.skip_confirmation!
-user.save!
 
-admin = User.create!(
-  :email => "ryan_blake@icloud.com",
-  :name => "ryan",
-  :password => "testtest",
-  :role => "admin"
-);
-admin.skip_confirmation!
-admin.save!
+
+
+10.times do
+  Spot.create!(
+  title:       Faker::Hipster.word,
+  description:    Faker::Hipster.paragraph,
+  length: Faker::Number.number(2),
+  width: Faker::Number.number(2),
+  depth: Faker::Number.number(2)
+  # created_at: "2015-2-15 12:04:01"
+  )
+end
+spots = Spot.all
+
+
+
+puts "seed done!"
+puts "#{Spot.count} spots"
