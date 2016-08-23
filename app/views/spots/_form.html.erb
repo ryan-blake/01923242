@@ -1,0 +1,60 @@
+<%= form_for(spot) do |f| %>
+  <% if spot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spot.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <ul>
+      <% spot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group" style="padding-right: 10px;">
+      <%= f.label :term %>:
+      <%= f.collection_check_boxes(:term_id ,Term.all, :id, :name) %>
+
+ <div class="centered-text">
+      <%= f.label :park %>:
+      <%= f.collection_select :park_id, Park.all, :id, :name,multiple: true, class: 'form-control' %>
+    </div></div>
+
+
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+    <%= f.hidden_field :user_id %>
+  </div>
+
+  <div class="field">
+    <p> Max length: Bow to Stern </p>
+    <%= f.label :length %><br/>
+   <%= f.number_field :length %>
+  </div>
+
+  <div class="field">
+    <p> Max Width: Port to Starboard </p>
+    <%= f.label :width %><br/>
+   <%= f.number_field :width %>
+  </div>
+
+  <div class="field">
+    <p> Max depth: for keel / hull </p>
+    <%= f.label :depth %><br/>
+   <%= f.number_field :depth %>
+  </div>
+
+
+  </br>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  <% end %>

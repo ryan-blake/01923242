@@ -32,6 +32,7 @@ gem 'devise', '3.4.1'
 gem 'bootstrap-sass'
 gem 'omniauth-stripe-connect'
 gem 'faker'
+gem 'annotate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

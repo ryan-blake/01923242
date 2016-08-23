@@ -12,6 +12,9 @@
  <% end %>
 <% else %>
 <h1> Welcome!</h1>
+
+<%= link_to 'Create new listing', new_spot_path %>
+
 <%  @spots.each do |i| %>
 <div class="well well-lg">
 

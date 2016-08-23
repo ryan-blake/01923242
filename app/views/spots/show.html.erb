@@ -1,7 +1,19 @@
+  <% if current_user && current_user.id == @spot.user_id%>
+    <%= link_to "Edit", edit_spot_path %>
+
+  <% end %>
+
 <div class="jumbotron">
 <h2><%= @spot.title %></h2>
 <div class="well well-sm pull-right">
-<%= @spot.description  + @spot.description + @spot.description + @spot.description  + @spot.description + @spot.description + @spot.description  + @spot.description + @spot.description %>
+  <strong>
+    <%= @spot.term.name %> </hr>
+       Term Parking on
+    <%= @spot.park.name %>
+   </strong>
+</div>
+<div class="well well-sm text-centered">
+<%= @spot.description %>
 </div>
 <div class="pull-right">
 <div class="well well-sm text-center">
