@@ -12,8 +12,10 @@
 #  updated_at  :datetime         not null
 #  price       :integer
 #  user_id     :integer
-#  term_id     :integer
 #  park_id     :integer
+#  term_id     :integer
+#  covered     :boolean
+#  ramp        :integer
 #
 
 require 'test_helper'

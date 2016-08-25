@@ -9,17 +9,18 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+
   end
 
 
   def new
     @spot = Spot.new(params[:spot_params])
-    @user = current_user
+
   end
 
  def create
   @spot = Spot.new(spot_params)
-  @spot.user_id = current_user.id
+
   respond_to do |format|
     if @spot.save
       format.html { redirect_to @spot, notice: 'Spot was successfully created.' }
@@ -74,12 +75,13 @@ end
 
 private
 
-def spot_params
-  params.require(:spot).permit(:title, :description, :user_id, :price, :length, :width, :depth)
+def login_required
+  redirect_to user_session_path, notice: 'Please login'
 end
 
-def login_required
-    redirect_to user_session_path, notice: 'Please login'
-  end
+def spot_params
+  params.require(:spot).permit(:title, :description, :current_user, :price, :length, :width, :depth, :park, :term_id, :park_id, :user_id)
+end
+
 
 end

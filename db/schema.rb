@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823173909) do
+ActiveRecord::Schema.define(version: 20160824210410) do
 
   create_table "parks", force: :cascade do |t|
     t.string   "name"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20160823173909) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "price"
-    t.integer  "user_id"
-    t.integer  "term_id"
     t.integer  "park_id"
+    t.integer  "term_id"
+    t.boolean  "covered"
+    t.integer  "ramp"
+    t.integer  "user_id"
   end
 
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"

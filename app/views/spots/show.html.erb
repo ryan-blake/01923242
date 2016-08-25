@@ -7,7 +7,7 @@
 <h2><%= @spot.title %></h2>
 <div class="well well-sm pull-right">
   <strong>
-    <%= @spot.term.name %> </hr>
+      <%= @spot.term.name %>
        Term Parking on
     <%= @spot.park.name %>
    </strong>
@@ -16,23 +16,32 @@
 <%= @spot.description %>
 </div>
 <div class="pull-right">
-<div class="well well-sm text-center">
+ <div class="well well-sm text-center">
+  <strong>Covered:</strong>
+    <% if @spot.covered == true %>
+      Yes  <% else %>  No
+    <%end %>
+  <br>
+  <strong> Ramp distance: </strong> <%= @spot.ramp %> mi.
+
   <h3> Dimensions</h3>
-Length:<%= @spot.length %><br>
-Width:<%= @spot.width %><br>
-Depth:<%= @spot.depth %><br>
-</div>
-</div>
-<hr>
-SAFass <br>
-SAFass <br>
-SAFass <br>
-SAFass <br>
-<strong>Images </strong><br>
-SAFass <br>
-SAFass <br>
-SAFass <br>
-SAFass <br>
-<h3> set a time you'd like to rent a spot for <br>
-[  day  ]  [ time ]  [Month & year]</h3>
+  Length:<%= @spot.length %><br>
+  Width:<%= @spot.width %><br>
+  Depth:<%= @spot.depth %><br>
+  </div>
+  </div>
+  <hr>
+  SAFass <br>
+  SAFass <br>
+  SAFass <br>
+  SAFass <br>
+  <strong>Images</strong><br>
+  SAFass <br>
+  SAFass <br>
+  SAFass <br>
+  SAFass <br>
+  <h3> set a time you'd like to rent a spot for
+   <br>
+   [  day  ]  [ time ]  [Month & year]
+  </h3>
 </div>

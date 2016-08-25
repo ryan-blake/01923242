@@ -6,7 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-term_array = %w{Long, Short}
+User.create(
+ name: "ryan",
+ email: "ryan_blake@mac.com",
+ role: 1,
+ password: "testtest"
+)
+users = User.all
+
+term_array = %w{Long Short Short&Long}
 
 term_array.each do |t|
   Term.find_or_create_by(
@@ -30,16 +38,25 @@ parks = Park.all
 10.times do
   Spot.create!(
   title:       Faker::Hipster.word,
-  description:    Faker::Hipster.paragraph,
+  description: Faker::Hipster.paragraph,
   length: Faker::Number.number(2),
   width: Faker::Number.number(2),
   depth: Faker::Number.number(2),
   term: terms.sample,
-  park: parks.sample
+  park: parks.sample,
+  covered: [true, false].sample,
+  ramp: rand(1..10)
   # created_at: "2015-2-15 12:04:01"
   )
 end
 spots = Spot.all
+
+length_ids = []
+
+spots.each do |i|
+      length_ids.push(i.id)
+    end
+
 
 
 puts"#{Park.count} parks"

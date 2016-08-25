@@ -10,14 +10,19 @@
     </div>
   <% end %>
 
-  <div class="form-group" style="padding-right: 10px;">
-      <%= f.label :term %>:
-      <%= f.collection_check_boxes(:term_id ,Term.all, :id, :name) %>
 
- <div class="centered-text">
-      <%= f.label :park %>:
-      <%= f.collection_select :park_id, Park.all, :id, :name,multiple: true, class: 'form-control' %>
-    </div></div>
+
+         <div class="form-group">
+           <%= f.label :term %>
+           <%= f.collection_select :term_id, Term.all, :id, :name, class: 'form-control' %>
+
+             <%= f.label :park %>
+             <%= f.collection_select :park_id, Park.all, :id, :name, class: 'form-control' %>
+           </div>
+
+
+
+
 
 
 
@@ -53,8 +58,8 @@
 
   </br>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
   <% end %>
