@@ -71,6 +71,13 @@ end
    end
  end
 
+ def secret
+  @user = current_user
+  if @user
+    @spot_s = Spot.where(user_id: @user.id)
+  end
+end
+
 
 
 private

@@ -26,6 +26,7 @@
 
 
 
+
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
@@ -53,6 +54,12 @@
     <p> Max depth: for keel / hull </p>
     <%= f.label :depth %><br/>
    <%= f.number_field :depth %>
+  </div>
+
+  <div class="field">
+    <p> Price / day</p>
+    <%= f.label :price %><br/>
+   <%= f.number_field :price %>
   </div>
 
 

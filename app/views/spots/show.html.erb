@@ -21,13 +21,27 @@
     <% if @spot.covered == true %>
       Yes  <% else %>  No
     <%end %>
+
   <br>
   <strong> Ramp distance: </strong> <%= @spot.ramp %> mi.
 
   <h3> Dimensions</h3>
-  Length:<%= @spot.length %><br>
-  Width:<%= @spot.width %><br>
-  Depth:<%= @spot.depth %><br>
+  <strong>Length:</strong> <%=  @spot.length %> ft.<br>
+  <strong>Width:</strong> <%= @spot.width %> ft.<br>
+  <strong>Depth:</strong> <%= @spot.depth %> ft.<br>
+<hr>
+  <div>
+    <%= form_for Charge.new do |f| %>
+      <%= f.hidden_field :amount, value: @spot.price %>
+      <%= f.hidden_field :item, value: @spot.title %>
+      <%= f.hidden_field :owner_id, value: @spot.user_id %>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_utz2352HLZF5A7m4XpIkkUqC" data-amount="<%= @spot.price.to_i * 100 %>"
+      data-name="RentSpot" data-description="<%= number_to_currency(@spot.price) %>"
+      data-image: "/assets/lab.jpg"></script>
+      <% end %>
+  </div>
+
   </div>
   </div>
   <hr>
@@ -40,8 +54,9 @@
   SAFass <br>
   SAFass <br>
   SAFass <br>
-  <h3> set a time you'd like to rent a spot for
+  <h3> set a time you'd like to rent a spot for (xx.xxxx through xx.xxxx)
    <br>
    [  day  ]  [ time ]  [Month & year]
   </h3>
+
 </div>
