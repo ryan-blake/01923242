@@ -34,6 +34,7 @@ gem 'omniauth-stripe-connect'
 gem 'faker'
 gem 'annotate'
 gem 'rails_12factor'
+gem 'stripe'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
