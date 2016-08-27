@@ -68,9 +68,5 @@ class UsersController < ApplicationController
       params.require(:user).permit(:role, :publishable_key, :provider, :uid, :access_code, :name, :about, :email, :address1, :address2, :city, :state, :zipcode, :latitude, :longitude)
     end
 end
-t.integer  "role"
-t.string   "publishable_key"
-t.string   "provider"
-t.string   "uid"
-t.string   "access_code"
+
 end

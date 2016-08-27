@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824210410) do
+ActiveRecord::Schema.define(version: 20160827203225) do
+
+  create_table "charges", force: :cascade do |t|
+    t.string   "item"
+    t.integer  "user_id"
+    t.integer  "vendor_id"
+    t.string   "token"
+    t.string   "customer_id"
+    t.boolean  "completed"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "price"
+  end
 
   create_table "parks", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160824210410) do
     t.boolean  "covered"
     t.integer  "ramp"
     t.integer  "user_id"
+    t.boolean  "arrived"
   end
 
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"
@@ -71,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160824210410) do
     t.string   "provider"
     t.string   "uid"
     t.string   "access_code"
+    t.string   "stripe_user_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
