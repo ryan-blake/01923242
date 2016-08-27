@@ -34,7 +34,7 @@
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description, class: 'form-control' %>
-    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :vendor_id %>
   </div>
 
   <div class="field">
@@ -54,7 +54,11 @@
     <%= f.label :depth %><br/>
    <%= f.number_field :depth %>
   </div>
-
+  <div class="field">
+    <p> price per day <p>
+    <%= f.label :price %><br/>
+   <%= f.number_field :price %>
+  </div>
 
   </br>
 

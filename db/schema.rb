@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827203225) do
+ActiveRecord::Schema.define(version: 20160827203848) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
+    t.integer  "price"
     t.integer  "user_id"
     t.integer  "vendor_id"
     t.string   "token"
@@ -22,8 +23,9 @@ ActiveRecord::Schema.define(version: 20160827203225) do
     t.boolean  "completed"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "price"
   end
+
+  add_index "charges", ["user_id"], name: "index_charges_on_user_id"
 
   create_table "parks", force: :cascade do |t|
     t.string   "name"
@@ -45,7 +47,6 @@ ActiveRecord::Schema.define(version: 20160827203225) do
     t.boolean  "covered"
     t.integer  "ramp"
     t.integer  "user_id"
-    t.boolean  "arrived"
   end
 
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"

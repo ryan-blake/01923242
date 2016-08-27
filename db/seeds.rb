@@ -45,17 +45,12 @@ parks = Park.all
   term: terms.sample,
   park: parks.sample,
   covered: [true, false].sample,
-  ramp: rand(1..10)
+  ramp: rand(1..10),
+  price: rand(10..20)
   # created_at: "2015-2-15 12:04:01"
   )
 end
 spots = Spot.all
-
-length_ids = []
-
-spots.each do |i|
-      length_ids.push(i.id)
-    end
 
 
 

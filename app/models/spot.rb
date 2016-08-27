@@ -16,11 +16,10 @@
 #  covered     :boolean
 #  ramp        :integer
 #  user_id     :integer
-#  arrived     :boolean
 #
 
 class Spot < ActiveRecord::Base
   belongs_to :park
   belongs_to :term
-  has_many :users
+  belongs_to :user
 end

@@ -1,0 +1,14 @@
+<% @spots. each do |spot| %>
+<div>
+  <%= spot.title %>
+  <%= spot.arrived %>
+<div>
+ <% my_charge = Charge.find_by(item: spot.title, user_id: current_user.id, completed: false) %>
+      <% if my_charge %>
+          <div class="button">
+            <%= link_to 'complete purchase / arrived!', complete_charge_path(charge_id: my_charge.id, token: my_charge.token, price: my_charge.price, customer_id: my_charge.customer_id, destination: my_charge.vendor.uid) %>
+          </div>
+      </div>
+      <% end %>
+      <% end %>
+</div>

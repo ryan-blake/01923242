@@ -28,6 +28,7 @@
 #  provider               :string
 #  uid                    :string
 #  access_code            :string
+#  stripe_user_id         :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

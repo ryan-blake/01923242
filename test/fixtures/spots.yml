@@ -16,7 +16,6 @@
 #  covered     :boolean
 #  ramp        :integer
 #  user_id     :integer
-#  arrived     :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

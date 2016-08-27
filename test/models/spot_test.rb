@@ -16,7 +16,6 @@
 #  covered     :boolean
 #  ramp        :integer
 #  user_id     :integer
-#  arrived     :boolean
 #
 
 require 'test_helper'
