@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  def home
+  def list
     @users = User.all
     @spots = Spot.all
     @charge  = Charge.new

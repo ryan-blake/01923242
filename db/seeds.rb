@@ -12,6 +12,18 @@ User.create(
  role: 1,
  password: "testtest"
 )
+User.create(
+ name: "rbk",
+ email: "r@mac.com",
+ role: 0,
+ password: "testtest"
+)
+User.create(
+ name:'buyer-name',
+ email: 'buy@mail.com',
+ role: 0,
+ password: "testtest"
+)
 users = User.all
 
 term_array = %w{Long Short Short&Long}
@@ -47,7 +59,7 @@ parks = Park.all
   covered: [true, false].sample,
   ramp: rand(1..10),
   price: rand(10..20),
-  user_id: 1
+  user_id: 2
   # created_at: "2015-2-15 12:04:01"
   )
 end

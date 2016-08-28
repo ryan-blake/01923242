@@ -14,8 +14,13 @@
     <div id="navbar">
       <ul class="nav navbar-nav">
         <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'show all', list_path %></li>
+
         <% if user_signed_in? %>
           <li><%= link_to 'Secret', secret_path %></li>
+          <li><%= link_to 'my-spots', my_spots_path %></li>
+
+
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">

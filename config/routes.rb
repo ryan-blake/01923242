@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'my_spots' => 'pages#spots'
 
-  get 'home' => 'pages#home'
+  get 'list' => 'pages#list'
 
   get 'complete_charge' => 'charges#complete'
 

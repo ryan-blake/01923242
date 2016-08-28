@@ -19,6 +19,9 @@ class ChargesController < ApplicationController
     )
     @charge.update_attribute(:completed, true)
     @spot.update_attribute(:arrived, true)
+    @spot.update_attribute(:user_id, @charge.vendor_id)
+
+
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

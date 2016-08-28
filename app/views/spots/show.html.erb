@@ -45,6 +45,12 @@
    [  day  ]  [ time ]  [Month & year]
   </h3>
   <div class="well">
+
 <p> $<%= @spot.price %>/ day </p>
+<%= render partial: 'charge', locals: {spot: @spot} %>
+
+<br>
+
+</div>
 </div>
 </div>

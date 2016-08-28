@@ -1,4 +1,3 @@
-class UsersController < ApplicationController
   class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :create]
 
@@ -67,6 +66,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:role, :publishable_key, :provider, :uid, :access_code, :name, :about, :email, :address1, :address2, :city, :state, :zipcode, :latitude, :longitude)
     end
-end
-
 end
