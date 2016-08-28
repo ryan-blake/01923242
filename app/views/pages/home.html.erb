@@ -4,16 +4,7 @@ jo<h1> Spots </h2>
   <% @spots.each do |spot| %>
   <%= spot.title %>
 
-  <div>
-    <%= form_for(@charge) do |f| %>
-    <% f.hidden_field :amount, value: spot.price %>
-    <% f.hidden_field :item, value: spot.title %>
-    <% f.hidden_field :owner_id, value: spot.user_id %>
 
-    <script src="https://checkout.stripe.com/checkout.js", class:"stripe-button", data: {key: ENV["stripe_publishable_key"], amount:"#{spot.price*100}", title:"spotGet", description: "#{number_to_currency(spot.price)}"}></script>
-
-  <% end %>
-</div>
 
 <div>
   <%= form_for Charge.new do |f| %>
@@ -23,7 +14,7 @@ jo<h1> Spots </h2>
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_utz2352HLZF5A7m4XpIkkUqC" data-amount="<%= spot.price.to_i * 100 %>"
     data-name="RentSpot" data-description="<%= number_to_currency(spot.price) %>"
-    data-image: "/assets/lab.jpg"></script>
+    data-image: "/assets/lab.png"></script>
     <% end %>
 </div>
   <% end %>

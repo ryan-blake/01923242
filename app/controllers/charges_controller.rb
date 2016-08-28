@@ -36,7 +36,8 @@ class ChargesController < ApplicationController
     vendor_id: params[:charge]["owner_id"].to_i,
     item: params[:charge]["item"],
     token: params[:stripeToken],
-    customer_id: customer.id
+    customer_id: customer.id,
+    completed: false
     )
     @charge.save
 

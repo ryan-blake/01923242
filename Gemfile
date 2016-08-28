@@ -34,6 +34,7 @@ gem 'omniauth-stripe-connect'
 gem 'faker'
 gem 'annotate'
 gem 'rails_12factor'
+gem 'stripe'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,6 +48,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'sqlite3'
+  gem 'better_errors'
+
 end
 
 group :development do

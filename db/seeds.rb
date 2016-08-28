@@ -46,7 +46,8 @@ parks = Park.all
   park: parks.sample,
   covered: [true, false].sample,
   ramp: rand(1..10),
-  price: rand(10..20)
+  price: rand(10..20),
+  user_id: 1
   # created_at: "2015-2-15 12:04:01"
   )
 end

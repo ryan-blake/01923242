@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-
+  resources :spots
 
   resources :charges
 
-  get 'spots' => 'pages#spots'
+  get 'my_spots' => 'pages#spots'
 
   get 'home' => 'pages#home'
 
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :user
   devise_for :users, :controllers => { :omniauth_callbacks =>"omniauth_callbacks" }
 
-    resources :spots
 
 # pages
     get '/secret', to: 'spots#secret', as: :secret

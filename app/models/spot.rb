@@ -16,6 +16,7 @@
 #  covered     :boolean
 #  ramp        :integer
 #  user_id     :integer
+#  arrived     :boolean
 #
 
 class Spot < ActiveRecord::Base

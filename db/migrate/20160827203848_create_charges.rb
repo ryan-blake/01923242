@@ -7,7 +7,7 @@ class CreateCharges < ActiveRecord::Migration
       t.integer :vendor_id
       t.string :token
       t.string :customer_id
-      t.boolean :completed
+      t.boolean :completed, :boolean, default: false
 
       t.timestamps null: false
     end

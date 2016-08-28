@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827203848) do
+ActiveRecord::Schema.define(version: 20160827231923) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20160827203848) do
     t.integer  "vendor_id"
     t.string   "token"
     t.string   "customer_id"
-    t.boolean  "completed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "completed",   default: false
+    t.boolean  "boolean",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160827203848) do
     t.boolean  "covered"
     t.integer  "ramp"
     t.integer  "user_id"
+    t.boolean  "arrived"
   end
 
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"
