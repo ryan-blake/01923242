@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
 
   def complete
     @charge = Charge.find(params[:charge_id])
-    @spot = Spot.find_by(user_id: @charge.user_id, arrived: false, title: @charge.item)
+    @spot = Spot.find_by(stripe_user_id: @charge.stripe_user_id, arrived: false, title: @charge.item)
 
     Stripe.api_key = ENV["stripe_api_key"]
     token = params[:token]
@@ -28,6 +28,7 @@ class ChargesController < ApplicationController
   end
 
   def create
+
     customer = Stripe::Customer.create(
       :email => current_user.email,
       :card => params[:stripeToken]
@@ -42,9 +43,10 @@ class ChargesController < ApplicationController
     completed: false
     )
     @charge.save
-
     @spot = Spot.where(title: @charge.item).first
-    @spot.user_id = @charge.user_id
+    @spot.stripe_user_id = 0
+
+    @spot.stripe_user_id = @charge.user_id
     @spot.arrived = false
     @spot.save
   end
