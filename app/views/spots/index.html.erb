@@ -13,9 +13,12 @@
 <% else %>
 <div class="text-centered">
 <h1> Welcome!</h1>
+<% unless current_user.provider == nil %>
 <button class="success btn-sm">
  <%= link_to 'Create new listing', new_spot_path %>
 </button>
+<% end %>
+
 </div>
 <hr>
 

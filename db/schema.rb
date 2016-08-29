@@ -29,17 +29,6 @@ ActiveRecord::Schema.define(version: 20160829204346) do
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
 
-  create_table "images", force: :cascade do |t|
-    t.integer  "spot_id"
-    t.string   "picture"
-    t.string   "verified"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "images", ["spot_id"], name: "index_images_on_spot_id"
-
   create_table "parks", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -62,9 +51,6 @@ ActiveRecord::Schema.define(version: 20160829204346) do
     t.integer  "user_id"
     t.boolean  "arrived"
     t.integer  "stripe_user_id"
-    t.text     "image_data"
-    t.string   "image"
-    t.string   "image_url"
     t.string   "spot_image_file_name"
     t.string   "spot_image_content_type"
     t.integer  "spot_image_file_size"

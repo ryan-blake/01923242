@@ -9,12 +9,12 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
-
   end
 
 
   def new
     @spot = Spot.new(params[:spot_params])
+    @user = current_user
 
   end
 

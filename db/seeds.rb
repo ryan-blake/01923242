@@ -16,7 +16,11 @@ User.create(
  name: "rbk",
  email: "r@mac.com",
  role: 0,
- password: "testtest"
+ password: "testtest",
+ publishable_key: ENV['PUBLISHABLE_KEY'],
+ provider: ENV['PROVIDER'],
+ uid: ENV['UID'],
+ access_code: ENV['ACCESS_CODE']
 )
 User.create(
  name:'buyer-name',
@@ -59,7 +63,8 @@ parks = Park.all
   covered: [true, false].sample,
   ramp: rand(1..10),
   price: rand(10..20),
-  user_id: 2
+  user_id: 2,
+  spot_image_file_name: '0gPFGAu.jpg'
   # created_at: "2015-2-15 12:04:01"
   )
 end
