@@ -80,7 +80,7 @@ def login_required
 end
 
 def spot_params
-  params.require(:spot).permit(:title, :description, :current_user, :price, :length, :width, :depth, :park, :term_id, :park_id, :user_id, :arrived)
+  params.require(:spot).permit(:title, :description, :current_user, :price, :length, :width, :depth, :park, :term_id, :park_id, :user_id, :arrived, :spot_image)
 end
 
 

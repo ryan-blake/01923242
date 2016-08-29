@@ -89,4 +89,15 @@ ActionMailer::Base.smtp_settings = {
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
  }
+
+ config.paperclip_defaults = {
+ storage: => :s3,
+ s3_credentials:  {
+   bucket:  ENV['S3_BUCKET'],
+   access_key_id:  ENV['S3_ACCESS_KEY_ID'],
+   secret_access_key:  ENV['S3_SECRET_ACCESS_KEY'],
+   s3_region: ENV['S3_REGION']
+ }
+}
+
 end
