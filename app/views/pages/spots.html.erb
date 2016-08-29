@@ -1,6 +1,6 @@
 <% @spots.each do |spot| %>
 <div>
-  <%= spot.title %>
+  <%= link_to spot.title, spot %>
   <%= spot.arrived %>
 <div>
  <% my_charge = Charge.find_by(item: spot.title, user_id: spot.user_id, completed: false) %>

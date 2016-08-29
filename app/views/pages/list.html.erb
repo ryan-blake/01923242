@@ -2,6 +2,7 @@
 jo<h1> Spots </h2>
   <div>
   <% @spots.each do |spot| %>
+  <% if spot.arrived == false %>
   <%= spot.title %>
 
 
@@ -18,4 +19,6 @@ jo<h1> Spots </h2>
     <% end %>
 </div>
   <% end %>
+  <% end %>
+
 </div>
