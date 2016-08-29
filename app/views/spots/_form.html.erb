@@ -61,6 +61,20 @@
   </div>
 
   </br>
+  <div class="field">
+  <%= f.label :image %><br>
+  <%= f.file_field :image %>
+</div>
+<%- if @spot.image_data? %>
+  <div class="field">
+    <%= image_tag @spot.image_url(:thumb) %>
+  </div>
+  <div class="field">
+    Remove attachment: <%= f.check_box :remove_image %>
+  </div>
+<%- end %>
+
+<hr>
 
 
   <div class="actions">

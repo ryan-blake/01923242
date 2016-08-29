@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828210631) do
+ActiveRecord::Schema.define(version: 20160829190210) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -20,13 +20,25 @@ ActiveRecord::Schema.define(version: 20160828210631) do
     t.integer  "vendor_id"
     t.string   "token"
     t.string   "customer_id"
-    t.boolean  "completed",   default: false
-    t.boolean  "boolean",     default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "completed",      default: false
+    t.boolean  "boolean",        default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "stripe_user_id"
   end
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "spot_id"
+    t.string   "picture"
+    t.string   "verified"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "images", ["spot_id"], name: "index_images_on_spot_id"
 
   create_table "parks", force: :cascade do |t|
     t.string   "name"
@@ -40,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160828210631) do
     t.integer  "length"
     t.integer  "width"
     t.integer  "depth"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "price"
     t.integer  "park_id"
     t.integer  "term_id"
@@ -49,7 +61,10 @@ ActiveRecord::Schema.define(version: 20160828210631) do
     t.integer  "ramp"
     t.integer  "user_id"
     t.boolean  "arrived"
-    t.integer  "stripeUserId"
+    t.integer  "stripe_user_id"
+    t.text     "image_data"
+    t.string   "image"
+    t.string   "image_url"
   end
 
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"

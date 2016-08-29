@@ -35,6 +35,15 @@ gem 'faker'
 gem 'annotate'
 gem 'rails_12factor'
 gem 'stripe'
+# image-uploads
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'shrine'
+gem 'aws-sdk'
+# ---------
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -23,6 +23,7 @@
   <tr>
     <h3><td><%=link_to i.title, i %>:</td></h3>
     <td><%=i.description.truncate(69)%></td>
+    <td><%= image_tag spot.image_url(:thumb) %></td>
     <td style="padding-left: 15px;"><strong>Length:  </strong>:<%= i.length%></td>
     <td style="padding-left: 15px;"><strong>width:  </strong>:<%= i.width%></td>
     <td style="padding-left: 15px;"><strong>depth:  </strong>:<%= i.depth%></td>
