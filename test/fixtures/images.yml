@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id         :integer          not null, primary key
+#  spot_id    :integer
+#  picture    :string
+#  verified   :string
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spot_id: 
+  picture: MyString
+  verified: MyString
+  user_id: 1
+
+two:
+  spot_id: 
+  picture: MyString
+  verified: MyString
+  user_id: 1

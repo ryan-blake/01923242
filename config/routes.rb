@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :spots
+  get 'images/new'
+
+  resources :spots do
+    resources :images
+  end
 
   resources :charges
 
