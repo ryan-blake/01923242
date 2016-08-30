@@ -40,9 +40,9 @@
     <td><strong> Covered: </strong><% if i.covered == true %> Yes <%else%> No <% end %>
   <tr>
   </table>
-  <% if @user.role == admin %>
-  <%= link_to "edit", edit_job_path(@spot), class: "btn btn-primary" %>
-<%= button_to "delete", @spot, :method=>:delete, :class=>:destroy %>
+  <% if current_user.role == "admin" || current_user.id == i.user_id %>
+  <%= link_to "edit", edit_spot_path(i), class: "btn btn-primary" %>
+<%= button_to "delete", i, :method=>:delete, :class=>:destroy %>
 <% end %>
  </div>
 </div>
