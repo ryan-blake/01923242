@@ -1,8 +1,8 @@
 
-jo<h1> Spots </h2>
+jo<h1> Spots currently rented </h2>
   <div>
   <% @spots.each do |spot| %>
-  <% if spot.arrived == false %>
+  <% if spot.arrived == true && spot.user_id == current_user.id %>
   <%= spot.title %>
 
 

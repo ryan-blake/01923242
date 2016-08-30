@@ -31,9 +31,11 @@
   </div>
   </div>
   <hr>
-
+<% if @spot.spot_image_file_name == nil %>
+  <%=image_tag("#{@spot.image_url}", :size => "420x420", alt: "Example Image")%>
+<% else %>
   <td> <%= image_tag @spot.spot_image(:tween) %> </td>
-
+<% end %>
   <h3> set a time you'd like to rent a spot for
    <br>
    [  day  ]  [ time ]  [Month & year]

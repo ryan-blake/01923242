@@ -24,22 +24,27 @@
 
 <%  @spots.each do |i| %>
 <div class="col-lg-6">
-<div class="well well-lg">
-<table>
+ <div class="well well-lg">
+  <table>
   <tr>
+    <h3><%=link_to i.title, i %></h3>
+    <% if i.spot_image_file_name == nil %>
+   <td><h4><%=image_tag("#{i.image_url}", :size => "120x120", alt: "Example Image")%></td></h4>
+   <% else %>
     <td><h4> <%=link_to image_tag i.spot_image(:square) %> </h4></td>
-    <h3><td><%=link_to i.title, i %>:</td></h3>
-    <td><%=i.description.truncate(59)%></td>
-    <td style="padding-left: 15px;"><strong>Length:  </strong>:<%= i.length%></td>
-    <td style="padding-left: 15px;"><strong>width:  </strong>:<%= i.width%></td>
-    <td style="padding-left: 15px;"><strong>depth:  </strong>:<%= i.depth%></td>
-    <td style="padding-left: 15px;"><strong>price:  </strong>:<%= i.price%></td>
-
+    <% end %>
+    <td style="padding-left: 10px"><%=i.description.truncate(59)%></td>
+    <td style="padding-left: 15px;"><strong>price:  </strong> $<%= i.price%>
+     <strong>Length:  </strong><%= i.length%>ft.
+    </td>
+    <td><strong> Covered: </strong><% if i.covered == true %> Yes <%else%> No <% end %>
   <tr>
-</table>
+  </table>
+  <% if @user.role == admin %>
+  <%= link_to "edit", edit_job_path(@spot), class: "btn btn-primary" %>
+<%= button_to "delete", @spot, :method=>:delete, :class=>:destroy %>
+<% end %>
+ </div>
 </div>
-</div>
-
-
 <% end %>
 <% end %>

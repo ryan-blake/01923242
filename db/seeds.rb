@@ -64,7 +64,7 @@ parks = Park.all
   ramp: rand(1..10),
   price: rand(10..20),
   user_id: 2,
-  spot_image_file_name: '0gPFGAu.jpg'
+  image_url: 'http://apod.nasa.gov/apod/image/1407/m31_bers_960.jpg',
   # created_at: "2015-2-15 12:04:01"
   )
 end
