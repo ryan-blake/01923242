@@ -29,6 +29,12 @@
 #  uid                    :string
 #  access_code            :string
 #  stripe_user_id         :string
+#  address                :string
+#  city                   :string
+#  state                  :string
+#  zipcode                :integer
+#  latitude               :float
+#  longitude              :float
 #
 
 class User < ActiveRecord::Base

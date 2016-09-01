@@ -14,7 +14,7 @@ protected
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:sign_up) << [:name, :address, :zipcode, :city, :state, :longitude, :latitude]
+    devise_parameter_sanitizer.for(:account_update) << [:name, :address, :zipcode, :city, :state, :longitude, :latitude]
   end
 end

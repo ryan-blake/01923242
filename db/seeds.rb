@@ -10,7 +10,9 @@ User.create(
  name: "ryan",
  email: "ryan_blake@mac.com",
  role: 1,
- password: "testtest"
+ password: "testtest",
+ zipcode: 76210
+
 )
 User.create(
  name: "rbk",
@@ -20,13 +22,17 @@ User.create(
  publishable_key: ENV['PUBLISHABLE_KEY'],
  provider: ENV['PROVIDER'],
  uid: ENV['UID'],
- access_code: ENV['ACCESS_CODE']
+ access_code: ENV['ACCESS_CODE'],
+ zipcode: 76135
+
 )
 User.create(
  name:'buyer-name',
  email: 'buy@mail.com',
  role: 0,
- password: "testtest"
+ password: "testtest",
+ zipcode: 76262
+
 )
 users = User.all
 
@@ -48,7 +54,7 @@ park_array = %w{Land Water}
 end
 
 parks = Park.all
-
+zip_array = %w{76262 76210 76135 76137}
 
 
 10.times do
@@ -65,6 +71,8 @@ parks = Park.all
   price: rand(10..20),
   user_id: 2,
   image_url: 'http://apod.nasa.gov/apod/image/1407/m31_bers_960.jpg',
+  zipcode: zip_array.sample
+
   # created_at: "2015-2-15 12:04:01"
   )
 end

@@ -23,6 +23,12 @@
 #  spot_image_file_size    :integer
 #  spot_image_updated_at   :datetime
 #  image_url               :string
+#  address                 :string
+#  city                    :string
+#  state                   :string
+#  zipcode                 :integer
+#  latitude                :float
+#  longitude               :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

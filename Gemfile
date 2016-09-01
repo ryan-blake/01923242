@@ -39,6 +39,7 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem "simple_calendar"
 gem 'geocoder'
+gem 'pry-rails'
 
 
 
