@@ -31,6 +31,7 @@ class Spot < ActiveRecord::Base
   belongs_to :term
   belongs_to :user
 
+# image
   has_attached_file :spot_image, styles: {
     thumb: '100x100',
     square: '200x200',
@@ -39,6 +40,13 @@ class Spot < ActiveRecord::Base
     large: '600x600'
   }
   validates_attachment_content_type :spot_image,  :content_type => /\Aimage\/.*\Z/
+  # mapping
+  geocoded_by :full_address
+  after_validation :geocode
 
+
+  def full_address
+    [address, city, state, zipcode].join(', ')
+  end
 
 end

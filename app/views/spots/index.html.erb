@@ -4,23 +4,19 @@
     <div class="container">
       <h1>Welcome!</h1>
       <p>Register to get started.</p>
-      <p>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-      </p>
+      <p><%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %></p>
     </div>
   </div>
  <% end %>
 <% else %>
-<div class="text-centered">
-<h1> Welcome!</h1>
-<% unless current_user.provider == nil %>
-<button class="success btn-sm">
- <%= link_to 'Create new listing', new_spot_path %>
-</button>
+ <div class="text-centered">
+  <h1> Welcome!</h1>
+   <% unless current_user.provider == nil %>
+   <button class="success btn-sm">
+    <%= link_to 'Create new listing', new_spot_path %>
+   </button>
+ </div>
 <% end %>
-
-</div>
-
 
 <hr>
 
@@ -31,22 +27,23 @@
   <tr>
     <h3><%=link_to i.title, i %></h3>
     <% if i.spot_image_file_name == nil %>
-   <td><h4><%=image_tag("#{i.image_url}", :size => "120x120", alt: "Example Image")%></td></h4>
-   <% else %>
-    <td><h4> <%=link_to image_tag i.spot_image(:square) %> </h4></td>
+      <td><h4><%=image_tag("#{i.image_url}", :size => "120x120", alt: "Example Image")%></td></h4>
+    <% else %>
+      <td><h4> <%=link_to image_tag i.spot_image(:square) %> </h4></td>
     <% end %>
     <td style="padding-left: 10px"><%=i.description.truncate(59)%></td>
     <td style="padding-left: 15px;"><strong>price:  </strong> $<%= i.price%>
      <strong>Length:  </strong><%= i.length%>ft.
     </td>
-    <td><strong> Covered: </strong><% if i.covered == true %> Yes <%else%> No <% end %>
-  <tr>
+    <td><strong> Covered: </strong>
+    <% if i.covered == true %> Yes <%else%> No <% end %>
+  </tr>
   </table>
   <% if current_user.role == "admin" || current_user.id == i.user_id %>
-  <%= link_to "edit", edit_spot_path(i), class: "btn btn-primary" %>
-<%= button_to "delete", i, :method=>:delete, :class=>:destroy %>
-<% end %>
+    <%= link_to "edit", edit_spot_path(i), class: "btn btn-primary" %>
+    <%= button_to "delete", i, :method=>:delete, :class=>:destroy %>
+  <% end %>
  </div>
 </div>
-<% end %>
+ <% end %>
 <% end %>
