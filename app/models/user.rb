@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
 before_save { self.role ||= :member }
 
 has_many :spots, dependent: :destroy
+has_many :events, dependent: :destroy
 has_many :paid_charges, class_name: 'Charge', foreign_key: 'user_id', dependent: :destroy
 has_many :received_charges, class_name: 'Charge', foreign_key: 'vendor_id', dependent: :destroy
 

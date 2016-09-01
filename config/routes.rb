@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :spots
+  resources :events
+
+  resources :spots do
+    resources :events, only: [:create, :destroy]
+end
 
   resources :charges
 

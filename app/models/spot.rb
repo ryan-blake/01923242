@@ -22,9 +22,11 @@
 #  spot_image_content_type :string
 #  spot_image_file_size    :integer
 #  spot_image_updated_at   :datetime
+#  image_url               :string
 #
 
 class Spot < ActiveRecord::Base
+  has_many :events
   belongs_to :park
   belongs_to :term
   belongs_to :user

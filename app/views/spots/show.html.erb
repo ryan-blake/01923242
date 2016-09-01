@@ -21,32 +21,34 @@
     <% if @spot.covered == true %>
       Yes  <% else %>  No
     <%end %>
-  <br>
-  <strong> Ramp distance: </strong> <%= @spot.ramp %> mi.
+   <br>
+   <strong> Ramp distance: </strong> <%= @spot.ramp %> mi.
 
-  <h3> Dimensions</h3>
-  Length:<%= @spot.length %><br>
-  Width:<%= @spot.width %><br>
-  Depth:<%= @spot.depth %><br>
+    <h3> Dimensions</h3>
+    Length:<%= @spot.length %><br>
+    Width:<%= @spot.width %><br>
+    Depth:<%= @spot.depth %><br>
   </div>
-  </div>
-  <hr>
+</div>
+<hr>
 <% if @spot.spot_image_file_name == nil %>
   <%=image_tag("#{@spot.image_url}", :size => "420x420", alt: "Example Image")%>
 <% else %>
   <td> <%= image_tag @spot.spot_image(:tween) %> </td>
 <% end %>
-  <h3> set a time you'd like to rent a spot for
-   <br>
-   [  day  ]  [ time ]  [Month & year]
-  </h3>
-  <div class="well">
+<div class=" text-center">
+  <h3> Reservation  </h3>
+  <br>
+    <%= render "events/calender" %>
+</div>
 
-<p> $<%= @spot.price %>/ day </p>
-<%= render partial: 'charge', locals: {spot: @spot} %>
+  <%= render 'events/form', event: Event.new, spot: @spot %>
 
+<div class="well">
+
+  <p> $<%= @spot.price %>/ day </p>
+  <%= render partial: 'charge', locals: {spot: @spot} %>
 <br>
 
-</div>
 </div>
 </div>

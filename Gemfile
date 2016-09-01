@@ -37,6 +37,8 @@ gem 'rails_12factor'
 gem 'stripe'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem "simple_calendar"
+
 
 
 # Use ActiveModel has_secure_password
