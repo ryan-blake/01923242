@@ -7,6 +7,10 @@ class SpotsController < ApplicationController
     @spots = Spot.all
   end
 
+  def boats
+    @boats = Spot.where(covered: true)
+  end
+
   def show
     @spot = Spot.find(params[:id])
     @events = Event.all
@@ -16,8 +20,13 @@ class SpotsController < ApplicationController
   def new
     @spot = Spot.new(params[:spot_params])
     @user = current_user
-
   end
+
+  def new_boat
+    @spot = Spot.new(params[:spot_params])
+    @user = current_user
+  end
+
 
  def create
   @spot = Spot.new(spot_params)
@@ -71,6 +80,32 @@ end
     format.json { head :no_content }
    end
  end
+
+
+ def search
+   if params[:value].to_i < 1
+     distance_in_miles = 2000
+   else
+     distance_in_miles = params[:value].to_i
+   end
+ @spots = Spot.where("park_id like ? and term_id like ? and (title like ? or description like ?)",
+           "%#{params[:park_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
+            .near([current_user.latitude, current_user.longitude], distance_in_miles)
+  render :index
+end
+
+def search_boats
+  if params[:value].to_i < 1
+    distance_in_miles = 2000
+  else
+    distance_in_miles = params[:value].to_i
+  end
+@spots = Spot.where("park_id like ? and term_id like ? and (title like ? or description like ?)",
+          "%#{params[:park_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
+           .near([current_user.latitude, current_user.longitude], distance_in_miles)
+ render :boats
+end
+
 
 
 

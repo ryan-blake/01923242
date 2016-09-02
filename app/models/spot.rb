@@ -32,6 +32,8 @@
 #
 
 class Spot < ActiveRecord::Base
+  default_scope { order('created_at DESC') }
+
   has_many :events
   belongs_to :park
   belongs_to :term
@@ -54,5 +56,6 @@ class Spot < ActiveRecord::Base
   def full_address
     [address, city, state, zipcode].join(', ')
   end
+
 
 end

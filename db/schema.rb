@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901190945) do
+ActiveRecord::Schema.define(version: 20160901202021) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20160901190945) do
   end
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
+
+  create_table "distances", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "distances", ["spot_id"], name: "index_distances_on_spot_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name"

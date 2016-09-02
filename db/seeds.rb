@@ -78,6 +78,14 @@ zip_array = %w{76262 76210 76135 76137}
 end
 spots = Spot.all
 
+distance_array = %w(10 20 30 50 100 150 200 350 400)
+
+distance_array.each do |c|
+  Distance.find_or_create_by(
+    value: c
+  )
+end
+distances = Distance.all
 
 
 puts"#{Park.count} parks"

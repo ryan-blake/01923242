@@ -20,7 +20,7 @@
    </button>
  </div>
  <div>
- <%= form_tag({controller: :spots, action: :search}, {method: :get}) do  %>
+ <%= form_tag({controller: :spots, action: :search_boats}, {method: :get}) do  %>
   <%= collection_select( nil, :park_id, Park.all, :id, :name, { :include_blank => 'Water and Land'} , { :class => 'form-control' })  %>
   <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Short and Long Term'} , { :class => 'form-control' })  %>
   <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
@@ -30,10 +30,8 @@
 </div>
 <% end %>
 
-<hr>
 
-
-<%  @spots.each do |i| %>
+<%  @boats.each do |i| %>
 <div class="col-lg-6">
  <div class="well well-lg">
   <table>
