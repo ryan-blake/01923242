@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
 
 
   def index
-    @spots = Spot.all
+    @spots = Spot.where(is_boat: nil)
   end
 
   def boats
