@@ -21,7 +21,7 @@
  </div>
  <div>
  <%= form_tag({controller: :spots, action: :search_boats}, {method: :get}) do  %>
-  <%= collection_select( nil, :park_id, Park.all, :id, :name, { :include_blank => 'Water and Land'} , { :class => 'form-control' })  %>
+  <%= collection_select( nil, :lake_id, Lake.all, :id, :name, { :include_blank => 'Lakes'} , { :class => 'form-control' })  %>
   <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Short and Long Term'} , { :class => 'form-control' })  %>
   <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
   <%= text_field_tag :keyword  %>

@@ -8,12 +8,14 @@ class SpotsController < ApplicationController
   end
 
   def boats
-    @boats = Spot.where(covered: true)
+    @boats = Spot.where(is_boat: true)
   end
 
   def show
-    @spot = Spot.find(params[:id])
     @events = Event.all
+    @spot = Spot.find(params[:id])
+
+    @boat = Spot.find(params[:id])
   end
 
 
@@ -25,6 +27,15 @@ class SpotsController < ApplicationController
   def new_boat
     @spot = Spot.new(params[:spot_params])
     @user = current_user
+  end
+
+  def edit
+    @boat = Spot.find(params[:id])
+    if current_user
+      @user = current_user
+    else
+      redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
   end
 
 
@@ -100,8 +111,8 @@ def search_boats
   else
     distance_in_miles = params[:value].to_i
   end
-@spots = Spot.where("park_id like ? and term_id like ? and (title like ? or description like ?)",
-          "%#{params[:park_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
+@boats = Spot.where("lake_id like ? and term_id like ? and (title like ? or description like ?)",
+          "%#{params[:lake_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
            .near([current_user.latitude, current_user.longitude], distance_in_miles)
  render :boats
 end
@@ -116,7 +127,8 @@ def login_required
 end
 
 def spot_params
-  params.require(:spot).permit(:title, :description, :current_user, :price, :length, :width, :depth, :park, :term_id, :park_id, :user_id, :arrived, :spot_image, :address, :city, :zipcode, :state, :longitude, :latitude, :covered, :ramp)
+  params.require(:spot).permit(:title, :description, :current_user, :price, :length, :width, :depth, :park, :term_id, :park_id,
+   :user_id, :arrived, :spot_image, :address, :city, :zipcode, :state, :longitude, :latitude, :covered, :ramp, :is_boat, :lake_id, :type_id, :make, :propulsion_id, :occupants )
 end
 
 

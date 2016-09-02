@@ -29,6 +29,12 @@
 #  zipcode                 :integer
 #  latitude                :float
 #  longitude               :float
+#  is_boat                 :boolean
+#  type_id                 :integer
+#  occupants               :integer
+#  propulsion_id           :integer
+#  make                    :text
+#  lake_id                 :integer
 #
 
 class Spot < ActiveRecord::Base
@@ -38,6 +44,9 @@ class Spot < ActiveRecord::Base
   belongs_to :park
   belongs_to :term
   belongs_to :user
+  belongs_to :lake
+  belongs_to :propulsion
+  belongs_to :type
 
 # image
   has_attached_file :spot_image, styles: {

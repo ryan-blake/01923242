@@ -29,6 +29,12 @@
 #  zipcode                 :integer
 #  latitude                :float
 #  longitude               :float
+#  is_boat                 :boolean
+#  type_id                 :integer
+#  occupants               :integer
+#  propulsion_id           :integer
+#  make                    :text
+#  lake_id                 :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

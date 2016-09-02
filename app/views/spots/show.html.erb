@@ -2,15 +2,19 @@
     <%= link_to "Edit", edit_spot_path %>
 
   <% end %>
-
+<% unless @spot.is_boat == true %>
 <div class="jumbotron">
 <h2><%= @spot.title %></h2>
 <div class="well well-sm pull-right">
   <strong>
-      <%= @spot.term.name %>
+  <%= @spot.term.name %>
+    <% unless @spot.park == nil %>
        Term Parking on
-    <%= @spot.park.name %>
-   </strong>
+       <%= @spot.park.name %>
+    <% else %>
+      Term
+    <% end %>
+  </strong>
 </div>
 <div class="well well-sm text-centered">
 <%= @spot.description %>
@@ -52,3 +56,54 @@
 
 </div>
 </div>
+<% else %>
+<div class="jumbotron">
+<h2><%= @spot.title %></h2>
+<div class="well well-sm pull-right">
+  <strong>
+      <%= @spot.term.name %>
+       Term
+   </strong>
+</div>
+<div class="well well-sm text-centered">
+<%= @spot.description %>
+</div>
+<div class="pull-right">
+ <div class="well well-sm text-center">
+  <strong>Lake:</strong> <%= @spot.lake.name%><br>
+  <strong>Type:</strong> <%= @spot.type.name%></br>
+  <strong>Make:</strong> <%= @spot.make %></br>
+
+   <br>
+   <strong> distance: </strong> <% %> mi.
+    <h3> Dimensions</h3>
+    Length:<%= @spot.length %><br>
+    Occupancy:<%= @spot.occupants %><br>
+    Propulsion:<%= @spot.propulsion.name %><br>
+  </div>
+</div>
+<hr>
+<% if @spot.spot_image_file_name == nil %>
+  <%=image_tag("#{@spot.image_url}", :size => "420x420", alt: "Example Image")%>
+<% else %>
+  <td> <%= image_tag @spot.spot_image(:tween) %> </td>
+<% end %>
+<div class=" text-center">
+  <h3> Reservation  </h3>
+  <br>
+    <%= render "events/calender" %>
+</div>
+
+  <%= render 'events/form', event: Event.new, spot: @spot %>
+
+<div class="well">
+
+  <p> $<%= @spot.price %>/ day </p>
+  <%= render partial: 'charge', locals: {spot: @spot} %>
+<br>
+
+</div>
+</div>
+
+
+<% end %>

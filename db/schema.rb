@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901202021) do
+ActiveRecord::Schema.define(version: 20160902191724) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -51,7 +51,20 @@ ActiveRecord::Schema.define(version: 20160901202021) do
   add_index "events", ["spot_id"], name: "index_events_on_spot_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
+  create_table "lakes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parks", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "propulsions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,13 +97,28 @@ ActiveRecord::Schema.define(version: 20160901202021) do
     t.integer  "zipcode"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "is_boat"
+    t.integer  "type_id"
+    t.integer  "occupants"
+    t.integer  "propulsion_id"
+    t.text     "make"
+    t.integer  "lake_id"
   end
 
+  add_index "spots", ["lake_id"], name: "index_spots_on_lake_id"
   add_index "spots", ["park_id"], name: "index_spots_on_park_id"
+  add_index "spots", ["propulsion_id"], name: "index_spots_on_propulsion_id"
   add_index "spots", ["term_id"], name: "index_spots_on_term_id"
+  add_index "spots", ["type_id"], name: "index_spots_on_type_id"
   add_index "spots", ["user_id"], name: "index_spots_on_user_id"
 
   create_table "terms", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

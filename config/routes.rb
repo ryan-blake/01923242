@@ -18,6 +18,8 @@ end
   get 'complete_charge' => 'charges#complete'
 
   resources :terms
+  resources :parks
+
   root to: 'spots#index'
   resources :user
   devise_for :users, :controllers => { :omniauth_callbacks =>"omniauth_callbacks" }
