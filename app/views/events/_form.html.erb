@@ -10,20 +10,26 @@
       </ul>
     </div>
   <% end %>
-
+<div class="well col-md-8">
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+  <div class="field pull-right" style="display:flex;">
+    <%= f.label :start %>
+    <%= f.datetime_select :start_time,  { ampm: true, order: [:day, :month, :year] }, { class: "form-control", style: "padding: 0, 5px, 0, 5px;" } %>
   </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+  <div class="field pull-right" style="display:flex;">
+    <%= f.label :end %><hr>
+    <%= f.datetime_select :end_time,  { ampm: true, order: [:day, :month, :year] }, { class: "form-control" } %>
   </div>
-  <div class="actions">
+  <br><br>
+  <div class="actions" style="display:inline;, text:">
     <%= f.submit %>
   </div>
+</div>
+
+
+
+
 <% end %>

@@ -66,5 +66,15 @@ class Spot < ActiveRecord::Base
     [address, city, state, zipcode].join(', ')
   end
 
+  def check(events, spot_id)
+     events.detect { |event| event.spot_id == spot_id }
+  end
+  def difference
+     distance_of_time_in_words event.start_time, event.end_time
+  end
+
+
+
+
 
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :events
 
   resources :spots do
-    resources :events, only: [:create, :destroy]
+    resources :events, only: [:create, :destroy, :show]
     collection do
       get 'search', 'search_boats'
 

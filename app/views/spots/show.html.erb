@@ -3,8 +3,10 @@
 
   <% end %>
 <% unless @spot.is_boat == true %>
+<div class="container-fluid">
 <div class="jumbotron">
 <h2><%= @spot.title %></h2>
+
 <div class="well well-sm pull-right">
   <strong>
   <%= @spot.term.name %>
@@ -42,21 +44,18 @@
 <% end %>
 <div class=" text-center">
   <h3> Reservation  </h3>
-  <br>
     <%= render "events/calender" %>
-</div>
-
   <%= render 'events/form', event: Event.new, spot: @spot %>
-
+  <hr>
 <div class="well">
-
   <p> $<%= @spot.price %>/ day </p>
-  <%= render partial: 'charge', locals: {spot: @spot} %>
 <br>
-
+ </div>
+</div>
 </div>
 </div>
 <% else %>
+<div class="container-fluid">
 <div class="jumbotron">
 <h2><%= @spot.title %></h2>
 <div class="well well-sm pull-right">
@@ -65,7 +64,7 @@
        Term
    </strong>
 </div>
-<div class="well well-sm text-centered">
+<div class="well well-md text-centered">
 <%= @spot.description %>
 </div>
 <div class="pull-right">
@@ -83,27 +82,30 @@
   </div>
 </div>
 <hr>
+<!-- holding place for seeded images -->
 <% if @spot.spot_image_file_name == nil %>
   <%=image_tag("#{@spot.image_url}", :size => "420x420", alt: "Example Image")%>
 <% else %>
   <td> <%= image_tag @spot.spot_image(:tween) %> </td>
 <% end %>
+
 <div class=" text-center">
-  <h3> Reservation  </h3>
+  <h3> Reservation </h3>
+</div>
+
   <br>
+
+  <div class="well">
     <%= render "events/calender" %>
 </div>
-
+<div class="text-center">
   <%= render 'events/form', event: Event.new, spot: @spot %>
-
-<div class="well">
-
-  <p> $<%= @spot.price %>/ day </p>
-  <%= render partial: 'charge', locals: {spot: @spot} %>
-<br>
-
 </div>
+</div>
+
+
 </div>
 
 
 <% end %>
+</div>

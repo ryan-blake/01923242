@@ -1,5 +1,5 @@
 
-jo<h1> Spots currently rented </h2>
+<h1> Spots currently rented </h2>
   <div>
   <% @spots.each do |spot| %>
   <% if spot.arrived == true && spot.user_id == current_user.id %>
