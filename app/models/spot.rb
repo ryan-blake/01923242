@@ -62,6 +62,7 @@ class Spot < ActiveRecord::Base
   after_validation :geocode
 
 
+
   def full_address
     [address, city, state, zipcode].join(', ')
   end
@@ -69,9 +70,7 @@ class Spot < ActiveRecord::Base
   def check(events, spot_id)
      events.detect { |event| event.spot_id == spot_id }
   end
-  def difference
-     distance_of_time_in_words event.start_time, event.end_time
-  end
+
 
 
 

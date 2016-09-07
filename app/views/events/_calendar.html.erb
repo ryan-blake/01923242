@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<%= week_calendar number_of_weeks: 2, events: @spot.events do |date, events| %>
+  <% events.each do |event| %>
+<!-- same day bookings -->
+  <% @half_day = 0 %>
+  <% if event.end_time && event.start_time %>
+    <% if event.end_time.strftime("%D") === event.start_time.strftime("%D") %>
+      <% diff = event.end_time.strftime("%H").to_i, event.start_time.strftime("%H").to_i %>
+      <% diff_1 = diff[0] %>
+      <% diff_2 = diff[1] %>
+      <% diff =  diff_1 - diff_2 %>
+      <%= diff %> hours
+      <!-- HALF DAY PRICING -->
+      <% if diff < 6 %>
+        <% @half_day = 1 %>
+        <% @difference = 0.75 %>
+       <% else %>
+         <% @half_day = 2 %>
+         <% @difference = 1 %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<!-- bookings on different days -->
+    <div>
+      <% if @half_day === 0 %>
+      <!-- <strong><%= event.name %> <%=event.start_time.strftime("%I:%M:%S")  %> -->
+      <!-- Display proper rent times -->
+          <% @difference = distance_of_time_in_words event.start_time, event.end_time  %>
+          <% @difference = @difference.to_i + 1 %>
+          <%= @difference.to_i %> days
+      <%  end %>
+
+<!-- bookings cost -->
+        <%if event.user == current_user %>
+          <strong><%= event.user.name %><strong>
+            <% if @difference < 1 %>
+             <% @total_price = event.spot.price  * @difference %>
+            <% elsif @difference.to_i > 1 %>
+              <% @total_price = event.spot.price  * @difference.to_i %>
+              <%= @total_price %>
+            <% else %>
+              <% @difference = 1 %>
+              <% @total_price = event.spot.price %>
+              <%= @total_price %>
+            <% end %>
+             <%= render partial: 'charge', locals: {spot: @spot} %>
+            <br>
+          <%else%>
+          <strong> booked
+        <% end %>
+         <%=event.end_time.strftime("%D") %></strong>
+    </div>
+     <% if event.user == current_user || current_user.role == "admin" %>
+       <%= link_to 'Cancel', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+     <%  end %>
+  <%  end %>
+
+  <hr>
+
+  <%= date %>
+
+
+
+<% end %>
+<br>
