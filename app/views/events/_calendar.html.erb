@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <%= week_calendar number_of_weeks: 2, events: @spot.events do |date, events| %>
+<%= date %>
+<hr>
   <% events.each do |event| %>
 <!-- same day bookings -->
   <% @half_day = 0 %>
@@ -56,10 +58,6 @@
        <%= link_to 'Cancel', event, method: :delete, data: { confirm: 'Are you sure?' } %>
      <%  end %>
   <%  end %>
-
-  <hr>
-
-  <%= date %>
 
 
 
