@@ -9,6 +9,7 @@
 <% else %>
  <div class="text-centered">
    <h3 class="text-center">Reserve Boats</h3>
+   <hr>
    <% unless current_user.provider == nil %>
    <button class="success btn-sm">
     <%= link_to 'Create new Spot listing', new_spot_path %>
