@@ -34,6 +34,8 @@
     Length:<%= @spot.length %><br>
     Width:<%= @spot.width %><br>
     Depth:<%= @spot.depth %><br>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=",
+                  class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
   </div>
 </div>
 <hr>
@@ -79,7 +81,11 @@
     Length:<%= @spot.length %><br>
     Occupancy:<%= @spot.occupants %><br>
     Propulsion:<%= @spot.propulsion.name %><br>
-  </div>
+   <br>
+      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=",
+                    class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
+</div>
+
 </div>
 <hr>
 <!-- holding place for seeded images -->
@@ -88,6 +94,7 @@
 <% else %>
   <td> <%= image_tag @spot.spot_image(:tween) %> </td>
 <% end %>
+
 
 <div class=" text-center">
   <h3> Reservation  </h3>
@@ -100,7 +107,5 @@
  </div>
 </div>
 </div>
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=11&size=440x400&key="ENV['GOOGLE_MAP']",
-              class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
 </div>
 <% end %>
