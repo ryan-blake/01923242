@@ -77,5 +77,8 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events :hover{
+    color: red;
+    cursor: crosshair;
+  }
 }

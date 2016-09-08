@@ -1,4 +1,11 @@
-
+<% unless user_signed_in? %>
+  <div class="jumbotron">
+    <div class="container">
+      <p>Register to get started.</p>
+      <p><%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %></p>
+    </div>
+  </div>
+<% else %>
 <h1> Spots currently rented </h2>
   <div>
   <% @spots.each do |spot| %>
@@ -22,3 +29,4 @@
   <% end %>
 
 </div>
+<% end %>

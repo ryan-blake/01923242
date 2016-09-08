@@ -1,5 +1,4 @@
 <% unless user_signed_in? %>
-<% content_for :top_content do %>
   <div class="jumbotron">
     <div class="container">
       <h1>Welcome!</h1>
@@ -7,10 +6,9 @@
       <p><%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %></p>
     </div>
   </div>
- <% end %>
 <% else %>
  <div class="text-centered">
-  <h1> Welcome!</h1>
+   <h3 class="text-center">Reserve Boats</h3>
    <% unless current_user.provider == nil %>
    <button class="success btn-sm">
     <%= link_to 'Create new Spot listing', new_spot_path %>
@@ -19,16 +17,27 @@
      <%= link_to 'Create new Boat listing', new_boat_path %>
    </button>
  </div>
- <div>
- <%= form_tag({controller: :spots, action: :search_boats}, {method: :get}) do  %>
-  <%= collection_select( nil, :lake_id, Lake.all, :id, :name, { :include_blank => 'Lakes'} , { :class => 'form-control' })  %>
-  <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Short and Long Term'} , { :class => 'form-control' })  %>
-  <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
-  <%= text_field_tag :keyword  %>
-  <%= submit_tag "search" %>
- <% end %>
+  <div class="col-lg-8">
+   <div class="well">
+    <%= form_tag({controller: :spots, action: :search_boats}, {method: :get}) do  %>
+  <div class="col-sm-4">
+    <%= collection_select( nil, :lake_id, Lake.all, :id, :name, { :include_blank => "Lakes"} , { :class => 'form-control' })  %>
+  </div>
+  <div class="col-sm-4">
+    <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Rental time period'} , { :class => 'form-control' })  %>
+  </div>
+  <div class="col-sm-4">
+    <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'Distance radius'} , { :class => 'form-control' })  %>
+  </div>
+  <span style="padding:15px;">
+    <%= text_field_tag :keyword %> <%= submit_tag "search" %>
+  </span>
+  </div>
 </div>
+
 <% end %>
+<% end %>
+
 
 
 <%  @boats.each do |i| %>

@@ -17,6 +17,20 @@
 @import "bootstrap";
 @import 'bootstrap/theme';
 
+body {
+  background: #b8e0f5;
+}
+
+h3 :hover {
+  text-decoration: none;
+  background-color: transparentize(gray, .9);
+  font-weight: bolder;
+}
+
+.buttons:link {
+  font-style:none;
+  color: black;
+}
 .alert-alert {
   @extend .alert-warning;
 }

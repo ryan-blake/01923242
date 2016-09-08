@@ -9,23 +9,31 @@
   </div>
  <% end %>
 <% else %>
- <div class="text-centered">
-  <h1> Welcome!</h1>
+   <h3 class="text-center"> Reserve Boat Parking & Storage </h3>
+   <div class="buttons" style="text-decoration:none;">
+
    <% unless current_user.provider == nil %>
-   <button class="success btn-sm">
+   <div class="btn btn-outline btn-primary btn-md">
     <%= link_to 'Create new Spot listing', new_spot_path %>
-   </button>
-   <button class="success btn-sm pull-right">
+  </div>
+   <div class="btn btn-outline btn-primary pull-right" style="color:black;">
      <%= link_to 'Create new Boat listing', new_boat_path %>
-   </button>
+   </div>
  </div>
- <div>
+ <div class="col-lg-8">
+  <div class="well">
  <%= form_tag({controller: :spots, action: :search}, {method: :get}) do  %>
+ <div class="col-lg-4">
   <%= collection_select( nil, :park_id, Park.all, :id, :name, { :include_blank => 'Water and Land'} , { :class => 'form-control' })  %>
+</div>
+  <div class="col-lg-4">
   <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Short and Long Term'} , { :class => 'form-control' })  %>
+</div>
+  <div class="col-lg-4">
   <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
-  <%= text_field_tag :keyword  %>
-  <%= submit_tag "search" %>
+</div>
+  <%= text_field_tag :keyword  %> <%= submit_tag "search" %>
+</div>
  <% end %>
 </div>
 <% end %>

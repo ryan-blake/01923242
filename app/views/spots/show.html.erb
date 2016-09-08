@@ -34,7 +34,7 @@
     Length:<%= @spot.length %><br>
     Width:<%= @spot.width %><br>
     Depth:<%= @spot.depth %><br>
-    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=",
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=AIzaSyBq08Yo7VhI0Qzj5bpYGMnYXyCYecgXwOI",
                   class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
   </div>
 </div>
@@ -82,7 +82,7 @@
     Occupancy:<%= @spot.occupants %><br>
     Propulsion:<%= @spot.propulsion.name %><br>
    <br>
-      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=",
+      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=9&size=200x200&key=AIzaSyBq08Yo7VhI0Qzj5bpYGMnYXyCYecgXwOI",
                     class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
 </div>
 

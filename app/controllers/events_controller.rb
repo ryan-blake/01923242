@@ -6,7 +6,6 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-    @spot = Spot.find(params[:spot_id])
   end
 
   # GET /events/1
