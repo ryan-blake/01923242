@@ -3,8 +3,9 @@
   <%= f.hidden_field :item, value: @spot.title %>
   <%= f.hidden_field :owner_id, value: @spot.user_id %>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-  data-key="pk_test_utz2352HLZF5A7m4XpIkkUqC"
-  data-amount="<% if @difference.to_i > 1 %><%= @spot.price.to_i * 100 * @difference.to_i %><% else %><%= @total_price.to_i * 100 %><%end %>"
-  data-name="RentSpot" data-description="<%= number_to_currency(@total_price) %>"
-  data-image: "/assets/lab.png"></script>
+    data-key="pk_test_utz2352HLZF5A7m4XpIkkUqC"
+    data-amount="<% if @difference.to_i > 1 %><%= @spot.price.to_i * 100 * @difference.to_i %><% else %><%= @total_price.to_i * 100 %><%end %>"
+    data-name="RentSpot" data-description="<%= number_to_currency(@total_price) %>"
+    data-image: "/assets/lab.png">
+  </script>
   <% end %>

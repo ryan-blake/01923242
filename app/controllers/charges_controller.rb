@@ -5,6 +5,7 @@ class ChargesController < ApplicationController
   def complete
     @charge = Charge.find(params[:charge_id])
     @spot = Spot.find_by(user_id: @charge.user_id, arrived: false, title: @charge.item)
+    @event = @spot.events.find_by(booked: true, user_id: current_user.id)
 
     Stripe.api_key = ENV["stripe_api_key"]
     token = params[:token]
@@ -19,7 +20,7 @@ class ChargesController < ApplicationController
     )
     @charge.update_attribute(:completed, true)
     @spot.update_attribute(:arrived, true)
-
+    @event.update_attribute(:payed, true)
 
 
     rescue Stripe::CardError => e
@@ -28,7 +29,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-    
+
     customer = Stripe::Customer.create(
       :email => current_user.email,
       :card => params[:stripeToken]
@@ -48,5 +49,8 @@ class ChargesController < ApplicationController
     @spot.user_id = @charge.user_id
     @spot.arrived = false
     @spot.save
+    @event = @spot.events.find_by(user_id: current_user.id, booked: false)
+    @event.booked = true
+    @event.save
   end
 end
