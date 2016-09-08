@@ -1,15 +1,19 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    @spot = Spot.find(params[:spot_id])
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @spot = Spot.find(params[:spot_id])
+
     @event = Event.find(params[:id])
   end
 
@@ -29,6 +33,8 @@ class EventsController < ApplicationController
     @spot = Spot.find(params[:spot_id])
     @event = @spot.events.build(event_params)
     @event.user = current_user
+
+
 
     respond_to do |format|
       if @event.save

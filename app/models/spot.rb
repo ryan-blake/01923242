@@ -39,6 +39,7 @@
 
 class Spot < ActiveRecord::Base
   default_scope { order('created_at DESC') }
+  validates_associated :events
 
   has_many :events
   belongs_to :park
@@ -61,6 +62,9 @@ class Spot < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
+  extend SimpleCalendar
+
+
 
   def full_address
     [address, city, state, zipcode].join(', ')
@@ -69,9 +73,6 @@ class Spot < ActiveRecord::Base
   def check(events, spot_id)
      events.detect { |event| event.spot_id == spot_id }
   end
-
-
-
 
 
 
