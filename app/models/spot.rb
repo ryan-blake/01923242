@@ -60,7 +60,7 @@ class Spot < ActiveRecord::Base
   validates_attachment_content_type :spot_image,  :content_type => /\Aimage\/.*\Z/
   # mapping
   geocoded_by :full_address
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.full_address.present? and obj.full_address_changed? }
 
   extend SimpleCalendar
 

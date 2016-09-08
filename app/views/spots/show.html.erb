@@ -100,5 +100,7 @@
  </div>
 </div>
 </div>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@spot.latitude},#{@spot.longitude}&markers=#{@spot.latitude},#{@spot.longitude}&zoom=11&size=440x400&key="ENV['GOOGLE_MAP']",
+              class: 'img-fluid img-rounded', alt: "#{@spot.title} on the map"%>
 </div>
 <% end %>
