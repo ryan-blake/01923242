@@ -62,7 +62,6 @@ class Spot < ActiveRecord::Base
   after_validation :geocode
 
 
-
   def full_address
     [address, city, state, zipcode].join(', ')
   end
