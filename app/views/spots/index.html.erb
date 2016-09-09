@@ -9,7 +9,7 @@
   </div>
  <% end %>
 <% else %>
-   <h3 class="text-center"> Reserve Boat Parking & Storage </h3>
+   <h3 class="text-center"> Boat Parking & Storage </h3>
    <div class="buttons" style="text-decoration:none;">
 
    <% unless current_user.provider == nil %>
@@ -42,16 +42,22 @@
 
 
 <%  @spots.each do |i| %>
-<div class="col-lg-6">
- <div class="well well-lg">
+<div class="" style="border-radius: 90px;">
+ <div class="col-lg-6 well well-styled">
   <table>
   <tr>
-    <h3><%=link_to i.title, i %></h3>
+    <h3 class="well-title"><%=link_to i.title, i %></h3>
     <% if i.spot_image_file_name == nil %>
-      <td><h4><%=image_tag("#{i.image_url}", :size => "120x120", alt: "Example Image")%></td></h4>
+      <td><h4><%=link_to image_tag("#{i.image_url}", :size => "120x120", alt: "Example Image"), i%></td></h4>
     <% else %>
       <td><h4> <%=link_to image_tag i.spot_image(:square) %> </h4></td>
     <% end %>
+    <td>
+      <% if current_user.role == "admin" || current_user.id == i.user_id %>
+        <%= link_to "edit", edit_spot_path(i), class: "btn btn-primary" %>
+        <%= button_to "delete", i, :method=>:delete, :class=>:destroy %>
+      <% end %>
+    </td>
     <td style="padding-left: 10px"><%=i.description.truncate(59)%></td>
     <td style="padding-left: 15px;"><strong>price:  </strong> $<%= i.price%>
      <strong>Length:  </strong><%= i.length%>ft.
@@ -60,11 +66,7 @@
     <% if i.covered == true %> Yes <%else%> No <% end %>
   </tr>
   </table>
-  <% if current_user.role == "admin" || current_user.id == i.user_id %>
-    <%= link_to "edit", edit_spot_path(i), class: "btn btn-primary" %>
-    <%= button_to "delete", i, :method=>:delete, :class=>:destroy %>
-  <% end %>
  </div>
 </div>
  <% end %>
-<% end %>
+<% end %><!-- top -->

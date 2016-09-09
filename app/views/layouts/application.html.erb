@@ -13,8 +13,8 @@
     </div>
     <div id="navbar">
       <ul class="nav navbar-nav">
-        <li class="pull-left"><%= link_to 'Home', root_path %></li>
-        <li class="pull-right"><%= link_to 'boats', boats_path %></li>              </ul>
+        <li class="pull-left"><%= link_to 'Spots', root_path %></li>
+        <li class="pull-right"><%= link_to 'Boats', boats_path %></li>              </ul>
 
         <ul class="nav navbar-nav pull-left">
           <% if user_signed_in? %>
@@ -23,11 +23,11 @@
             Events
                 <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu" role="menu">
+              <ul class="dropdown-menu" role="menu" style="padding-right:15px;">
                 <li><%= link_to 'show all', list_path %></li>
                   <li><%= link_to 'Secret', secret_path %></li>
-                  <li><%= link_to 'my-spots', my_spots_path %></li>
-                  <li><%= link_to 'events', events_path %></li>
+                  <li><%= link_to 'My-spots', my_spots_path %></li>
+                  <li><%= link_to 'Events', events_path %></li>
                 </li>
         <% end %>
       </ul>
@@ -36,7 +36,7 @@
         <% if user_signed_in? %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <%= current_user.name.pluralize %>
+              <%= current_user.name %>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">

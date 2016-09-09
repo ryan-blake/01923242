@@ -18,7 +18,7 @@
 @import 'bootstrap/theme';
 
 body {
-  background: #b8e0f5;
+  background: #aabad1	;
 }
 
 h3 :hover {
@@ -30,6 +30,20 @@ h3 :hover {
 .buttons:link {
   font-style:none;
   color: black;
+}
+
+.well-styled {
+box-shadow: -5px 5px 10px 5px #888;
+border-radius: 30px;
+background: #b4bcc7;
+padding-left: 5px;
+}
+.well-styled img {
+ border-radius: 40%;
+}
+
+.well-title a {
+  color: cyan;
 }
 .alert-alert {
   @extend .alert-warning;

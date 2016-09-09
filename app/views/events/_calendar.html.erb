@@ -58,7 +58,7 @@
               <% @total_price = event.spot.price %>
               <%= @total_price %>
             <% end %>
-            <% unless event.payed = true %>
+            <% unless event.payed %>
              <%= render partial: 'charge', locals: {spot: @spot} %>
              <% else %>
              <h2>payed</h2>
