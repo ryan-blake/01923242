@@ -15,11 +15,17 @@
 class Event < ActiveRecord::Base
   # validate :end_time_not_reserved
   # validate :start_time_not_reserved
-
+validates :end_time, :start_time, inclusion: { within: (:start_time < :end_time) }
 
  belongs_to :user
  belongs_to :spot
  extend SimpleCalendar
+
+ def end_time_greater
+  #  @event.end_time.strftime("%s").to_i > @event.start_time.strftime("%s").to_i
+
+ end
+
 
 
  #   def start_time_not_reserved

@@ -20,7 +20,7 @@
    <% end %>
  </div>
   <div class="col-lg-8">
-   <div class="well" style="background:#d7e2f0;">
+    <div class="well" style="background:#d7e2f0; box-shadow: 1px 4px 9px 4px #fff; border-color: cyan;">
     <%= form_tag({controller: :spots, action: :search_boats}, {method: :get}) do  %>
   <div class="col-sm-4">
     <%= collection_select( nil, :lake_id, Lake.all, :id, :name, { :include_blank => "Lakes"} , { :class => 'form-control' })  %>

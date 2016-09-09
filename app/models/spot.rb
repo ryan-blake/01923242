@@ -39,9 +39,9 @@
 
 class Spot < ActiveRecord::Base
   default_scope { order('created_at DESC') }
-  validates_associated :events
 
   has_many :events
+  validates_associated :events
   belongs_to :park
   belongs_to :term
   belongs_to :user

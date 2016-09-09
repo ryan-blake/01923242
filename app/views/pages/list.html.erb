@@ -12,8 +12,6 @@
   <% if spot.arrived == true && spot.user_id == current_user.id %>
   <%= spot.title %> currently owned by buyer do not create a purchase
 
-
-
 <div>
   <%= form_for Charge.new do |f| %>
     <%= f.hidden_field :amount, value: spot.price %>

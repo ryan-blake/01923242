@@ -28,8 +28,11 @@
      Charged: $<%= my_charges.price %>
      <strong><%=my_charges.completed%></strong>
      <% my_events.each do|i| %>
-       <strong>from :</strong><%= i.start_time.strftime("%A""%D") %> --> <%= i.end_time.strftime("%A""%D") %>
+     <% @time_difference = i.start_time.strftime("%s").to_i - i.end_time.strftime("%s").to_i %>
+      <% if @time_difference > 0 %>
+       <strong>from :</strong><%= @time_difference = i.start_time.strftime("%s").to_i - i.end_time.strftime("%s").to_i %> --> <%= i.end_time.strftime("%s") %>
        <strong>spot :</strong><%= i.spot_id %>
+       <% end %>
       <% end %>
      <% end %>
     <% end %>
