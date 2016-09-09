@@ -10,7 +10,7 @@
   <div>
   <% @spots.each do |spot| %>
   <% if spot.arrived == true && spot.user_id == current_user.id %>
-  <%= spot.title %>
+  <%= spot.title %> currently owned by buyer do not create a purchase
 
 
 

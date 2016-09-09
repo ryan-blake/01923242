@@ -9,9 +9,9 @@
   </div>
  <% end %>
 <% else %>
-   <h3 class="text-center"> Boat Parking & Storage </h3>
+   <h2 class="text-center"> Boat Parking & Storage </h2>
    <div class="buttons" style="text-decoration:none;">
-
+<hr>
    <% unless current_user.provider == nil %>
    <div class="btn btn-outline btn-primary btn-md">
     <%= link_to 'Create new Spot listing', new_spot_path %>
@@ -19,26 +19,25 @@
    <div class="btn btn-outline btn-primary pull-right" style="color:black;">
      <%= link_to 'Create new Boat listing', new_boat_path %>
    </div>
+    <% end %>
  </div>
  <div class="col-lg-8">
-  <div class="well">
+  <div class="well" style="background:#d7e2f0;">
  <%= form_tag({controller: :spots, action: :search}, {method: :get}) do  %>
- <div class="col-lg-4">
+ <div class="col-sm-4">
   <%= collection_select( nil, :park_id, Park.all, :id, :name, { :include_blank => 'Water and Land'} , { :class => 'form-control' })  %>
 </div>
-  <div class="col-lg-4">
+  <div class="col-sm-4">
   <%= collection_select( nil, :term_id, Term.all, :id, :name, { :include_blank => 'Short and Long Term'} , { :class => 'form-control' })  %>
 </div>
-  <div class="col-lg-4">
+  <div class="col-sm-4">
   <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
 </div>
   <%= text_field_tag :keyword  %> <%= submit_tag "search" %>
 </div>
  <% end %>
 </div>
-<% end %>
 
-<hr>
 
 
 <%  @spots.each do |i| %>

@@ -8,7 +8,7 @@
   </div>
 <% else %>
 <div>
-   <h3 class="text-center">Reserve Boats</h3>
+   <h2 class="text-center">Reserve Boats</h2>
    <hr>
    <% unless current_user.provider == nil %>
    <button class="success btn-sm">
@@ -17,6 +17,7 @@
    <button class="success btn-sm pull-right">
      <%= link_to 'Create new Boat listing', new_boat_path %>
    </button>
+   <% end %>
  </div>
   <div class="col-lg-8">
    <div class="well" style="background:#d7e2f0;">
@@ -35,10 +36,7 @@
   </span>
   </div>
 </div>
-
 <% end %>
-<% end %>
-
 
 
 <%  @boats.each do |i| %>
@@ -62,8 +60,11 @@
     <td style="padding-left: 15px;"><strong>price:  </strong> $<%= i.price%>
      <strong>Length:  </strong><%= i.length%>ft.
     </td>
-    <td><strong> Covered: </strong>
-    <% if i.covered == true %> Yes <%else%> No <% end %>
+    <td><strong> Lake: </strong>
+    <%= i.lake.name %>
+    <strong> occupants: </strong>
+    <%= i.occupants %>
+  </td>
   </tr>
   </table>
  </div>
