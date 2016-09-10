@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908201213) do
+ActiveRecord::Schema.define(version: 20160909172234) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160908201213) do
     t.integer  "propulsion_id"
     t.text     "make"
     t.integer  "lake_id"
+    t.integer  "buyer_id"
   end
 
   add_index "spots", ["lake_id"], name: "index_spots_on_lake_id"

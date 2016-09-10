@@ -13,32 +13,39 @@
 #
 
 class Event < ActiveRecord::Base
-  # validate :end_time_not_reserved
-  # validate :start_time_not_reserved
-validates :end_time, :start_time, inclusion: { within: (:start_time < :end_time) }
-
+  validate :expiration_date_cannot_be_in_the_past, :discount_cannot_be_greater_than_total_value
+  extend SimpleCalendar
  belongs_to :user
  belongs_to :spot
- extend SimpleCalendar
+ # validates :name, presence: true
 
- def end_time_greater
-  #  @event.end_time.strftime("%s").to_i > @event.start_time.strftime("%s").to_i
+ def expiration_date_cannot_be_in_the_past
+    if (start_time.present?) && (start_time < Date.today)
+      errors.add(:expiration_date, "can't be in the past")
+    end
+  end
 
+  def discount_cannot_be_greater_than_total_value
+   if start_time > end_time
+     errors.add(:start_time, "can't be greater than end time value")
+   end
  end
 
 
 
- #   def start_time_not_reserved
- #    @spot.event.each do |i|
- #      array = []
- #      array << i.start_time
- #    end
- #    array.each do |i|
- #      if start_time.present? && start_time == array[i]
- #       errors.add(:start_time, "Time already reserved")
- #      end
- #    end
-      # end
+
+
+#    def start_time_not_reserved
+#     @spot.event.each do |i|
+#       array = []
+#       array << i.start_time
+#     end
+#     array.each do |i|
+#       if start_time.present? && start_time == array[i]
+#        errors.add(:start_time, "Time already reserved")
+#       end
+#     end
+#    end
 
  #   def end_time_not_reserved
  #     @spot.event.each do |i|

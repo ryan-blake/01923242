@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
 
   def complete
     @charge = Charge.find(params[:charge_id])
-    @spot = Spot.find_by(user_id: @charge.user_id, arrived: false, title: @charge.item)
+    @spot = Spot.find_by(user: @charge.vendor_id, arrived: false, title: @charge.item)
     @event = @spot.events.find_by(booked: true, user_id: current_user.id)
 
     Stripe.api_key = ENV["stripe_api_key"]
@@ -21,6 +21,8 @@ class ChargesController < ApplicationController
     @charge.update_attribute(:completed, true)
     @spot.update_attribute(:arrived, true)
     @event.update_attribute(:payed, true)
+    redirect_to  my_spots_path
+
 
 
     rescue Stripe::CardError => e
@@ -43,10 +45,10 @@ class ChargesController < ApplicationController
     customer_id: customer.id,
     completed: false
     )
+    @charge.update_attribute(:boolean, true)
     @charge.save
 
     @spot = Spot.where(title: @charge.item).first
-    @spot.user_id = @charge.user_id
     @spot.arrived = false
     @spot.save
     @event = @spot.events.find_by(user_id: current_user.id, booked: false)

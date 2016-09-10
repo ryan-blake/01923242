@@ -9,7 +9,7 @@
 <h1> Spots currently rented </h2>
   <div>
   <% @spots.each do |spot| %>
-  <% if spot.arrived == true && spot.user_id == current_user.id %>
+  <% if spot.arrived == true && spot.buyer_id == current_user.id %>
   <%= spot.title %> currently owned by buyer do not create a purchase
 
 <div>

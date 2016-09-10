@@ -1,41 +1,60 @@
 <div class="jumbotron well"><h2><%= @user.name %> </h2>
  </div>
  <div class="well well-styled">
-  <% @spots.each do |spot| %>
-   <div>
-    <strong>Reservation:</strong> <%= link_to spot.title, spot %>
-    <strong>Completed payment:</strong> <%= spot.arrived %>
-   <div>
-   <% my_charge = Charge.find_by(item: spot.title, user_id: spot.user_id, completed: false) %>
-   <% my_event = Event.find_by(spot_id: spot.id, payed: false) %>
-   <% if my_event %>
-     <%= my_event.start_time.strftime("%D") %> --> <%= my_event.end_time.strftime("%D") %>
-    <% if my_charge %>
-          <div class="button">
-            <%= link_to 'complete purchase / arrived!', complete_charge_path(charge_id: my_charge.id, token: my_charge.token, price: my_charge.price, customer_id: my_charge.customer_id, destination: my_charge.vendor.uid) %>
-          </div>
+   <% if @charge %>
+ <div class="well well-styled">
+   <h4 style="text-decoration:underline;"> Reservation needing payment</h4>
+  <% @charge.each do |charge| %>
+   <% if charge.completed === false %>
+    <% my_charge = Charge.find_by(user_id: @user, completed: false) %>
+    <% my_event = Event.where(payed: false, user_id: @user) %>
+    <%my_spot = Spot.find_by(title: charge.item ) %>
+    <h3><%= link_to my_spot.title, my_spot %></h3>
+      <div class="btm btn-primary">
+        <%= link_to 'complete purchase / arrived!', complete_charge_path(charge_id: my_charge.id, token: my_charge.token, price: my_charge.price, customer_id: my_charge.customer_id, destination: my_charge.vendor.uid) %>
       </div>
+     <div>
+      <strong>Reservation:</strong> <%= charge.item%>
+      <strong>Completed payment:</strong> <%= charge.completed %>
+    </div>
     <% end %>
+  <% end %>
+</div>
+<div class="well well-styled">
+<h4 style="text-decoration:underline;"> Current Reservations </h4>
+ <%@charge.each do |charge| %>
+ <% if charge.completed === true %>
+  <% my_events = Event.find_by(payed: true, user_id: @user) %>
+  <% my_spots = Spot.find_by(title: charge.item) %>
+   <% if my_spots && my_events %>
+   <% if my_events.end_time > Time.now%>
+     <h3> <strong><%= link_to my_spots.title, my_spots%></strong></h3>
+       <%= my_events.start_time.strftime("%v" " at " "%r")%> to <%= my_events.end_time.strftime("%v" " at " "%r")%>
+      Charged: $<%= charge.price %>
+   <% end %>
+  <% end %>
   <% end %>
  <% end %>
- <% @spots.each do |spot| %>
- <% my_charges = Charge.find_by(item: spot.title, user_id: spot.user_id, completed: true) %>
-   <% my_events = Event.where(payed: true, spot_id: spot) %>
-   <% if my_charges %>
-    <%if my_events%>
-     <h3><%= spot.title %></h3>
-     <h3><%= spot.id %></h3>
-     Charged: $<%= my_charges.price %>
-     <strong><%=my_charges.completed%></strong>
-     <% my_events.each do|i| %>
-     <% @time_difference = i.start_time.strftime("%s").to_i - i.end_time.strftime("%s").to_i %>
-      <% if @time_difference > 0 %>
-       <strong>from :</strong><%= @time_difference = i.start_time.strftime("%s").to_i - i.end_time.strftime("%s").to_i %> --> <%= i.end_time.strftime("%s") %>
-       <strong>spot :</strong><%= i.spot_id %>
-       <% end %>
-      <% end %>
-     <% end %>
+</div>
+
+ <div class="well well-styled">
+  <h4 style="text-decoration:underline;"> Past Reservations </h4>
+  <%@charge.each do |charge| %>
+   <% if charge.completed === true %>
+    <% my_events = Event.find_by(payed: true, user_id: @user) %>
+    <% my_spots = Spot.find_by(title: charge.item) %>
+     <% if my_spots && my_events %>
+     <% if my_events.end_time < Time.now%>
+     <h4 style="text-decoration:underline;"> Past Reservations </h4>
+       <h3> <strong><%= link_to my_spots.title, my_spots%></strong></h3>
+         <%= my_events.start_time.strftime("%v" " at " "%r")%> to <%= my_events.end_time.strftime("%v" " at " "%r")%>
+        Charged: $<%= charge.price %>
     <% end %>
+    <% end %>
+   <% end %>
   <% end %>
  </div>
+
+
+ <% end %>
 </div>
