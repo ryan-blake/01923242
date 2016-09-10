@@ -53,6 +53,7 @@ class ChargesController < ApplicationController
     @spot.save
     @event = @spot.events.find_by(user_id: current_user.id, booked: false)
     @event.booked = true
+    @event.charge_id = @charge.id
     @event.save
     redirect_to  my_spots_path
 

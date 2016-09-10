@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909172234) do
+ActiveRecord::Schema.define(version: 20160910033644) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 20160909172234) do
     t.integer  "spot_id"
     t.boolean  "payed",      default: false
     t.boolean  "booked",     default: false
+    t.integer  "charge_id"
   end
 
+  add_index "events", ["charge_id"], name: "index_events_on_charge_id"
   add_index "events", ["spot_id"], name: "index_events_on_spot_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
