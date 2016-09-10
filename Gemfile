@@ -41,7 +41,7 @@ gem "simple_calendar"
 gem 'geocoder'
 gem 'pry-rails'
 gem 'ice_cube'
-
+gem 'kaminari'
 
 
 

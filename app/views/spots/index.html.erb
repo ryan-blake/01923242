@@ -40,6 +40,7 @@
 
 
 
+
 <%  @spots.each do |i| %>
 <div class="" style="border-radius: 90px;">
  <div class="col-lg-6 well well-styled">
@@ -67,5 +68,8 @@
   </table>
  </div>
 </div>
+
  <% end %>
+ <%= paginate @spots %>
+
 <% end %><!-- top -->
