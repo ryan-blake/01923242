@@ -12,7 +12,6 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @spot = Spot.find(params[:spot_id])
-
     @event = Event.find(params[:id])
   end
 
@@ -30,17 +29,17 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @spot = Spot.find(params[:spot_id])
+    @user = User.third
     @event = @spot.events.build(event_params)
     @event.user = current_user
 
 
-
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @spot, notice: 'Event was successfully created.' }
+        format.html { redirect_to @spot, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { redirect_to @spot, notice: 'Event creation failed.' }
+        format.html { redirect_to @spot, notice: 'Reservation creation failed.' }
         format.json { render json: @spot.errors, status: :unprocessable_entity }
       end
     end
