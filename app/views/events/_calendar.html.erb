@@ -42,14 +42,14 @@
           <% @difference = @difference.to_i + 1 %>
             <% @multiple_day_count = @difference.to_i  %>
           <%= @difference.to_i %> days
-
-      <%  end %>
+      <% end %>
 
 <!-- bookings cost -->
         <%if event.user == current_user %>
           <strong><%= event.user.name %><strong>
             <% if @difference < 1 %>
              <% @total_price = event.spot.price  * @difference %>
+             <% @total_price = @total_price.ceil%>
             <% elsif @difference.to_i > 1 %>
               <% @total_price = event.spot.price  * @difference.to_i %>
               <%= @total_price %>

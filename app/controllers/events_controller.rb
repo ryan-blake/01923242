@@ -40,8 +40,8 @@ class EventsController < ApplicationController
         format.html { redirect_to @spot, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { redirect_to @spot, notice: 'Event creation failed.' }
+        format.json { render json: @spot.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +65,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Reservation successfully cancelled.' }
       format.json { head :no_content }
     end
   end

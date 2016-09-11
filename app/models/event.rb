@@ -13,51 +13,26 @@
 #
 
 class Event < ActiveRecord::Base
-  validate :expiration_date_cannot_be_in_the_past, :discount_cannot_be_greater_than_total_value
   extend SimpleCalendar
- belongs_to :user
- belongs_to :spot
+  validate :future_reservations_only, :on => :create
+  validates_datetime :end_time, :after => :start_time
+  validates :start_time, :end_time, overlap: { scope: 'spot_id',
+                                             message_content: 'overlaps with Users other meetings.' }
+  belongs_to :user
+  belongs_to :spot
+
  # validates :name, presence: true
 
- def expiration_date_cannot_be_in_the_past
-    if (start_time.present?) && (start_time < Date.today)
-      errors.add(:expiration_date, "can't be in the past")
+
+  def future_reservations_only
+    if start_time < Time.now
+     errors.add(:start_time, "cannot be in the past")
     end
   end
 
-  def discount_cannot_be_greater_than_total_value
-   if start_time > end_time
-     errors.add(:start_time, "can't be greater than end time value")
-   end
- end
 
-
-
-
-
-#    def start_time_not_reserved
-#     @spot.event.each do |i|
-#       array = []
-#       array << i.start_time
-#     end
-#     array.each do |i|
-#       if start_time.present? && start_time == array[i]
-#        errors.add(:start_time, "Time already reserved")
-#       end
-#     end
-#    end
-
- #   def end_time_not_reserved
- #     @spot.event.each do |i|
- #        array = []
- #        array << i.start_time
- #     end
- #     array.each do |i|
- #       if end_time.present? && end_time == array[i]
- #           errors.add(:start_time, "Time already reserved")
- #       end
- #     end
- # end
+def one_reservation_at_a_time
+end
 
 
 end
