@@ -105,7 +105,7 @@ end
    end
  @spots = Spot.where("park_id like ? and term_id like ? and (title like ? or description like ?)",
            "%#{params[:park_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
-            .near([current_user.latitude, current_user.longitude], distance_in_miles)
+            .near([current_user.latitude, current_user.longitude], distance_in_miles).page(params[:page]).per(10)
   render :index
 end
 
@@ -117,7 +117,7 @@ def search_boats
   end
 @boats = Spot.where("lake_id like ? and term_id like ? and (title like ? or description like ?)",
           "%#{params[:lake_id]}%", "%#{params[:term_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
-           .near([current_user.latitude, current_user.longitude], distance_in_miles)
+           .near([current_user.latitude, current_user.longitude], distance_in_miles).page(params[:page]).per(10)
  render :boats
 end
 

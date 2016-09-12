@@ -64,7 +64,14 @@ class Spot < ActiveRecord::Base
 
   extend SimpleCalendar
 
+  def events_record
 
+
+    events.each do |e|
+      #find multi day events and duplicate them
+
+    end
+  end
 
   def full_address
     [address, city, state, zipcode].join(', ')

@@ -19,12 +19,17 @@ class Event < ActiveRecord::Base
   validates :start_time, :end_time, overlap: { scope: 'spot_id',
                                              message_content: 'overlaps with Users other meetings.' }
 
-  validate :has_not_posted, :on => :create
-
+  validate :unbooked_events
   belongs_to :user
   belongs_to :spot
 
  # validates :name, presence: true
+  def unbooked_events
+    if Event.where(user_id: user, spot_id: spot, booked: false).length >= 1
+      puts "something unpaid !!!!"
+      errors.add(:booked, "Either Cancel or Pay prev. reservation.")
+    end
+  end
 
 
   def future_reservations_only
@@ -33,14 +38,9 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def has_not_posted
-    if Event.where(user_id: @user).where(spot_id: @spot, booked: false)
-    errors.add(:base, "Error message")
-  end
-  end
 
 def self.one_reservation_at_a_time
-  if Event.find_by(spot_id: @spot.id, booked: false, user_id: @user.id)
+  if Event.where(spot_id: @spot.id, booked: false, user_id: @user.id)
     errors.add("no no")
   end
 end
