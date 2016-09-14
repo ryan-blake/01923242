@@ -35,6 +35,7 @@
 #  propulsion_id           :integer
 #  make                    :text
 #  lake_id                 :integer
+#  buyer_id                :integer
 #
 
 class Spot < ActiveRecord::Base
@@ -65,7 +66,6 @@ class Spot < ActiveRecord::Base
   extend SimpleCalendar
 
   def events_record
-
 
     events.each do |e|
       #find multi day events and duplicate them

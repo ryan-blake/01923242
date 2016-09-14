@@ -10,6 +10,9 @@
 #  end_time   :datetime
 #  user_id    :integer
 #  spot_id    :integer
+#  payed      :boolean          default(FALSE)
+#  booked     :boolean          default(FALSE)
+#  charge_id  :integer
 #
 
 require 'test_helper'

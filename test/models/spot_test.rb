@@ -35,6 +35,7 @@
 #  propulsion_id           :integer
 #  make                    :text
 #  lake_id                 :integer
+#  buyer_id                :integer
 #
 
 require 'test_helper'

@@ -16,10 +16,8 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @events = Event.all
     @spot = Spot.find(params[:id])
     @boat = Spot.find(params[:id])
-
   end
 
 
