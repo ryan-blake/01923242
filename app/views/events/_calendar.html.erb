@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= week_calendar number_of_weeks: 2, events: @spot.events do |date, events| %>
+<%= week_calendar number_of_weeks: 2, events: @spot.events do |date, events, evented| %>
 
 <%= date.strftime('%x') %>
 
@@ -10,7 +10,6 @@
 <% a = [] %>
  <% a = *event.start_time.to_date..event.end_time.to_date %>
 <%= a %>
-
   <% @half_day = 0 %>
   <!-- same day bookings -->
   <% if event.end_time && event.start_time %>
@@ -50,14 +49,37 @@
             <% if @difference < 1 %>
              <% @total_price = event.spot.price  * @difference %>
              <% @total_price = @total_price.ceil%>
+             <% @duplicate = false %>
             <% elsif @difference.to_i > 1 %>
               <% @total_price = event.spot.price  * @difference.to_i %>
               <%= @total_price %>
+              <% @duplicate = true %>
             <% else %>
               <% @difference = 1 %>
               <% @total_price = event.spot.price %>
               <%= @total_price %>
+              <% @duplicate = false %>
             <% end %>
+            <% eventeds = [] %>
+<% if @duplicate %>
+<%@difference =  @difference -1 %>
+<% @difference.times do %>
+<% evented = event.clone %>
+<% evented.start_time += 86400 %>
+<% date = event.start_time %>
+<% evented.start_time = date %>
+<% evented.booked = true %>
+<% eventeds << evented %>
+<%= event.start_time.strftime("%D") %>
+<%= evented.start_time.strftime("%D") %>
+    booked
+   <% end %>
+<% end %>
+
+
+
+
+
             <% unless event.booked %>
              <%= render partial: 'charge', locals: {spot: @spot} %>
              <% else %>
@@ -76,5 +98,7 @@
   <%  end %>
 
 
+
 <% end %>
+
 <br>

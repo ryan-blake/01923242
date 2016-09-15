@@ -29,9 +29,10 @@
   }
 
   td {
-    padding: 6px;
+    padding: 3px;
     vertical-align: top;
-    width: 14%;
+    width: 10%;
+    background: white;
 
     border: 1px solid #ddd;
     border-top-color: rgb(221, 221, 221);
@@ -49,7 +50,7 @@
   }
 
   .day {
-    height: 80px;
+    background-color: blue;
   }
 
   .wday-0 {}
@@ -65,9 +66,13 @@
   }
 
   .past {}
-  .future {}
+  .future {
+    background: green;
+  }
 
-  .start-date {}
+  .start-date {
+
+  }
 
   .prev-month {
     background: #DDD;

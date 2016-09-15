@@ -70,6 +70,7 @@ class Spot < ActiveRecord::Base
     events.each do |e|
       #find multi day events and duplicate them
 
+
     end
   end
 
@@ -80,6 +81,8 @@ class Spot < ActiveRecord::Base
   def check(events, spot_id)
      events.detect { |event| event.spot_id == spot_id }
   end
+
+
 
 
 

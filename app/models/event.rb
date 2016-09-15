@@ -39,7 +39,9 @@ class Event < ActiveRecord::Base
     end
   end
 
-
+  def difference(event)
+    puts start_time.strftime("%d")
+  end
 
 
 end
