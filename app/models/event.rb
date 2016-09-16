@@ -26,18 +26,17 @@ class Event < ActiveRecord::Base
  # validates :name, presence: true
   def unbooked_events
     if Event.where(user_id: user, spot_id: spot, booked: false).length >= 1
-
       errors.add(:booked, "Either Cancel or Pay previous reservation.")
-
     end
   end
-
 
   def future_reservations_only
     if start_time < Time.now
      errors.add(:start_time, "cannot be in the past")
     end
   end
+
+  
 
 
 
