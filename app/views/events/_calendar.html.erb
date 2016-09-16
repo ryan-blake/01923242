@@ -6,6 +6,10 @@
 
 <hr>
   <% events.each do |event| %>
+   <%event.repeats.each do |e| %>
+   hi
+  <%= content_tag(:div, "Your content here", :class => "notice #{event.view_class}") %>
+  <% end %>
   <!-- create array of booking length -->
 <% a = [] %>
  <% a = *event.start_time.to_date..event.end_time.to_date %>
@@ -75,8 +79,6 @@
     booked
    <% end %>
 <% end %>
-
-
 
 
 

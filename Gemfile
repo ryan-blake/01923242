@@ -44,6 +44,7 @@ gem 'ice_cube'
 gem 'kaminari'
 gem 'validates_timeliness', '~> 4.0'
 gem 'validates_overlap'
+gem 'recurrence'
 
 
 

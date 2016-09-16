@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_events, only: [:update]
 
 
   # GET /events
@@ -12,7 +13,10 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @spot = Spot.find(params[:spot_id])
-    @event = Event.find(params[:id])
+    @event = Event..where(spot_id: @spot.id)
+    @repeats = @event.repeats
+    @spot_repeats = @spot.events.collect { |event| event.repeats }.flatten
+
   end
 
   # GET /events/new
@@ -77,6 +81,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :start_time, :end_time, :booked, :payed)
+      params.require(:event).permit(:name, :start_time, :end_time, :booked, :payed, :repeat, :tag)
+    end
+
+    def set_current_events
+      @current_events = Repeat.where(event_id: @event.id)
     end
 end

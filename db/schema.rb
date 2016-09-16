@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910033644) do
+ActiveRecord::Schema.define(version: 20160916174931) do
 
   create_table "charges", force: :cascade do |t|
     t.string   "item"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160910033644) do
     t.boolean  "payed",      default: false
     t.boolean  "booked",     default: false
     t.integer  "charge_id"
+    t.string   "tag"
+    t.string   "repeat"
   end
 
   add_index "events", ["charge_id"], name: "index_events_on_charge_id"
@@ -73,6 +75,18 @@ ActiveRecord::Schema.define(version: 20160910033644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "repeats", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "title"
+    t.string   "tag"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "repeats", ["event_id"], name: "index_repeats_on_event_id"
 
   create_table "spots", force: :cascade do |t|
     t.string   "title"
