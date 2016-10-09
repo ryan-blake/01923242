@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-
   # GET /events
   # GET /events.json
   def index
@@ -11,8 +10,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @spot = Spot.find(params[:spot_id])
-    @event = Event.find(params[:id])
+    # @spot = Spot.find(params[:spot_id])
+    # @event = Event.find(params[:id])
   end
 
   # GET /events/new
@@ -79,4 +78,10 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :start_time, :end_time, :booked, :payed)
     end
+
+    def set_current_events
+    @some_events = Event.where spot_id: @spot.id
+    @current_events =  @some_events.where start_time >= Time.now
+
+  end
 end
