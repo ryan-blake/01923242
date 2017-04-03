@@ -59,6 +59,7 @@
               <%= @total_price %>
             <% end %>
             <% unless event.booked %>
+            <!-- connect -->
              <%= render partial: 'charge', locals: {spot: @spot} %>
              <% else %>
              <h2>payed</h2>
@@ -72,7 +73,6 @@
      <% if event.user == current_user || current_user.role == "admin" %>
        <%= link_to 'Cancel', event, method: :delete, data: { confirm: 'Are you sure?' } %>
      <%  end %>
-
   <%  end %>
 
 

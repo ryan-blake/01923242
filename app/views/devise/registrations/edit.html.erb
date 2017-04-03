@@ -1,7 +1,11 @@
 <% header "Edit #{resource_name.to_s.humanize}" %>
+
+
 <% if current_user.provider == nil %>
 <%= link_to image_tag('blue-on-light.png'), user_omniauth_authorize_path(:stripe_connect) %>
 <% end %>
+
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
