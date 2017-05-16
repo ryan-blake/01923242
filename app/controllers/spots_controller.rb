@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.where(is_boat: nil)
-    @spots = Kaminari.paginate_array(@spots).page(params[:page]).per(10)
+    @spots = Kaminari.paginate_array(@spots).page(params[:page]).per(5)
 
   end
 

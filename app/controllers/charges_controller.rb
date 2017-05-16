@@ -23,8 +23,6 @@ class ChargesController < ApplicationController
     @event.update_attribute(:payed, true)
     redirect_to  my_spots_path
 
-
-
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to charges_path

@@ -49,9 +49,9 @@
   <h3> Reservation  </h3>
   <div id="events_calendar">
     <%= render "events/calendar", locals: {events: @events, spot: @spot} %>
-
+</div>
   <%= render 'events/form', event: Event.new, spot: @spot %>
-  </div>
+
   <hr>
 <div class="well">
   <p> $<%= @spot.price %>/ day </p>

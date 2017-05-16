@@ -10,6 +10,11 @@
 #  end_time   :datetime
 #  user_id    :integer
 #  spot_id    :integer
+#  payed      :boolean          default(FALSE)
+#  booked     :boolean          default(FALSE)
+#  charge_id  :integer
+#  tag        :string
+#  repeat     :string
 #
 
 class Event < ActiveRecord::Base

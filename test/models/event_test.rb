@@ -13,6 +13,8 @@
 #  payed      :boolean          default(FALSE)
 #  booked     :boolean          default(FALSE)
 #  charge_id  :integer
+#  tag        :string
+#  repeat     :string
 #
 
 require 'test_helper'
